@@ -1,13 +1,15 @@
 const express = require('express');
 
+const router = express.Router();
+
 const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
 
-// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
 
+const { getAllProductCategories } = require('./controllers/productController');
+// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
+router.get('/product-categories', auth, getAllProductCategories);
 // const { authSchema } = require('../../models/user');
 // const { users: ctrl } = require('../../controllers');
-
-const router = express.Router();
 
 // router.post('/register', validation(authSchema.authRegisterSchema), tryCatchWrapper(ctrl.register));
 // router.get('/verify/:verificationToken', tryCatchWrapper(ctrl.verifyEmail));
