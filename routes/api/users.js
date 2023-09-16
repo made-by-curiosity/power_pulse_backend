@@ -1,6 +1,6 @@
 const express = require("express");
 
-const ctrl = require("../../controllers/users");
+const { users } = require("../../controllers");
 
 const { validation, auth, upload } = require("../../middlewares");
 
@@ -8,21 +8,26 @@ const { schemas } = require("../../models/users");
 
 const router = express.Router();
 
-router.post("/register", validation(schemas.registerSchema), ctrl.register);
+router.post("/register", validation(schemas.registerSchema), users.register);
 
-router.post("/login", validation(schemas.loginSchema), ctrl.login);
+router.post("/login", validation(schemas.loginSchema), users.login);
 
-router.post("/info", auth, validation(schemas.addUserInfoSchema), ctrl.addInfo);
+router.post(
+  "/info",
+  auth,
+  validation(schemas.addUserInfoSchema),
+  users.addInfo
+);
 
 router.put(
   "/info",
   auth,
   validation(schemas.updateUserSchema),
-  ctrl.updateInfo
+  users.updateInfo
 );
 
-router.get("/info", auth, ctrl.getInfo);
+router.get("/info", auth, users.getInfo);
 
-router.post("/logout", auth, ctrl.logOut);
+router.post("/logout", auth, users.logOut);
 
 module.exports = router;
