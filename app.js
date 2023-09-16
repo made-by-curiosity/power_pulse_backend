@@ -31,8 +31,3 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
-
-// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
-
-// const usersRouter = require('./routes/api/users');
-// const contactsRouter = require('./routes/api/contacts');
