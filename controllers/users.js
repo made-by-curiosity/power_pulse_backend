@@ -124,24 +124,33 @@ const updateInfo = async (req, res) => {
 const getInfo = async (req, res) => {
   const { email } = req.user;
   const user = await User.findOne({ email });
-  const { desiredtWeight, height, birthday, sex, levelActivity } =
-    user.userInfo;
 
-  const bmr = bmrCalculationFn(
-    desiredtWeight,
-    height,
-    birthday,
-    sex,
-    levelActivity
-  );
+  if (user.userInfo) {
+    const { desiredtWeight, height, birthday, sex, levelActivity } =
+      user.userInfo;
 
-  res.status(200).json({
-    user: {
-      name: user.name,
-      userInfo: user.userInfo,
-    },
-    bmr,
-  });
+    const bmr = bmrCalculationFn(
+      desiredtWeight,
+      height,
+      birthday,
+      sex,
+      levelActivity
+    );
+
+    res.status(200).json({
+      user: {
+        name: user.name,
+        userInfo: user.userInfo,
+      },
+      bmr,
+    });
+  } else {
+    res.status(200).json({
+      user: {
+        name: user.name,
+      },
+    });
+  }
 };
 
 const logOut = async (req, res) => {
