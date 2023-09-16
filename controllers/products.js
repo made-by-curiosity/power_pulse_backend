@@ -1,14 +1,10 @@
-const ProductCategory = require('../models/ProductCategory'); 
+const Product = require('../models/product'); 
 
-async function getAllProductCategories(req, res) {
-  try {
-    const categories = await ProductCategory.find();
-
-    res.status(200).json(categories);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
+const getAllProductCategories = async (req, res) => {
+        const result = await Product.find();
+        console.log(result); 
+        console.log(Product)
+        res.json(result);
 }
 
 module.exports = {

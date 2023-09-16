@@ -4,10 +4,14 @@ const router = express.Router();
 
 const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
 
+const { getAllProductCategories } = require('../../controllers/products');
 
-const { getAllProductCategories } = require('./controllers/productController');
+router.get('/', getAllProductCategories);
+
+module.exports = router;
+
+
 // всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
-router.get('/product-categories', auth, getAllProductCategories);
 // const { authSchema } = require('../../models/user');
 // const { users: ctrl } = require('../../controllers');
 
@@ -31,5 +35,3 @@ router.get('/product-categories', auth, getAllProductCategories);
 // );
 
 // router.post('/logout', auth, tryCatchWrapper(ctrl.logout));
-
-module.exports = router;
