@@ -10,6 +10,17 @@ const exercisesSchema = new Schema({
     time: Number,
 });
 
-const Exercises = model('exercises', exercisesSchema);
+const filterSchema = new Schema({
+    
+filter: String,
+name: String,
+imgURL: String,
+});
 
-module.exports = Exercises;
+const Exercises = model('exercises', exercisesSchema);
+const Filters = model('filter', filterSchema);
+
+module.exports = {
+    Exercises,
+    Filters,
+};

@@ -12,6 +12,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 const productRoutes = require('./routes/api/food');
 const productBtBlodType = require('./routes/api/food');
 const exercisesRoutes = require('./routes/api/exercises');
+const bodyPartsRoutes = require('./routes/api/exercises');
 
 app.use(logger(formatsLogger));
 app.use(cors());
@@ -21,6 +22,7 @@ app.use(express.static('public'));
 app.use('/api/products', productRoutes);
 app.use('/api/products/byBloodType', productBtBlodType);
 app.use('/api/exercises', exercisesRoutes);
+app.use('/api/exercises/body-parts', bodyPartsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
