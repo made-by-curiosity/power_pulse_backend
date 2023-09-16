@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/users");
 const { tryCatchWrapper } = require("../middlewares");
+const { bmrCalculationFn } = require("../helpers");
 
 const { SECRET_KEY } = process.env;
 
@@ -63,7 +64,100 @@ const login = async (req, res) => {
   });
 };
 
+const addInfo = async (req, res) => {
+  const { email } = req.user;
+  const { height, desiredtWeight, birthday, sex, levelActivity } = req.body;
+
+  const bmr = bmrCalculationFn(
+    desiredtWeight,
+    height,
+    birthday,
+    sex,
+    levelActivity
+  );
+
+  const userInfo = {
+    ...req.body,
+  };
+  const user = await User.findOneAndUpdate(
+    { email },
+    { userInfo: userInfo },
+    { new: true }
+  );
+
+  res.status(201).json({
+    user: {
+      userInfo: user.userInfo,
+    },
+    bmr,
+  });
+};
+
+const updateInfo = async (req, res) => {
+  const { email } = req.user;
+  const user = await User.findOneAndUpdate(
+    { email },
+    { ...req.body },
+    { new: true }
+  );
+
+  const { desiredtWeight, height, birthday, sex, levelActivity } =
+    user.userInfo;
+
+  const bmr = bmrCalculationFn(
+    desiredtWeight,
+    height,
+    birthday,
+    sex,
+    levelActivity
+  );
+
+  res.status(200).json({
+    user: {
+      name: user.name,
+      userInfo: user.userInfo,
+    },
+    bmr,
+  });
+};
+
+const getInfo = async (req, res) => {
+  const { email } = req.user;
+  const user = await User.findOne({ email });
+  const { desiredtWeight, height, birthday, sex, levelActivity } =
+    user.userInfo;
+
+  const bmr = bmrCalculationFn(
+    desiredtWeight,
+    height,
+    birthday,
+    sex,
+    levelActivity
+  );
+
+  res.status(200).json({
+    user: {
+      name: user.name,
+      userInfo: user.userInfo,
+    },
+    bmr,
+  });
+};
+
+const logOut = async (req, res) => {
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: "" });
+
+  res.status(204).json({
+    message: "logout sucsess",
+  });
+};
+
 module.exports = {
   register: tryCatchWrapper(register),
   login: tryCatchWrapper(login),
+  addInfo: tryCatchWrapper(addInfo),
+  updateInfo: tryCatchWrapper(updateInfo),
+  getInfo: tryCatchWrapper(getInfo),
+  logOut: tryCatchWrapper(logOut),
 };

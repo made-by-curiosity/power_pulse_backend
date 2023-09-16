@@ -5,6 +5,52 @@ const { handleSchemaValidationErrors } = require("../helpers");
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const passwordRegex = /^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/;
 
+const userInfoSchema = new Schema(
+  {
+    height: {
+      type: Number,
+      min: 150,
+      required: [true, "Height is required"],
+    },
+    currentWeight: {
+      type: Number,
+      min: 35,
+      required: [true, "currentWeight is required"],
+    },
+    desiredtWeight: {
+      type: Number,
+      min: 35,
+      required: [true, "desiredtWeight is required"],
+    },
+    birthday: {
+      type: Date,
+      required: [true, "Birthday is required"],
+      validate: {
+        validator: function (birthday) {
+          const age = new Date().getFullYear() - birthday.getFullYear();
+          return age >= 18;
+        },
+        message: "User must be 18 years or older. ",
+      },
+    },
+    blood: {
+      type: Number,
+      enum: [1, 2, 3, 4],
+      required: [true, "blood type is required"],
+    },
+    sex: {
+      type: String,
+      enum: ["male", "female"],
+      required: [true, "sex is required"],
+    },
+    levelActivity: {
+      type: Number,
+      enum: [1, 2, 3, 4, 5],
+    },
+  },
+  { versionKey: false, timestamps: true, _id: false }
+);
+
 const userSchema = new Schema(
   {
     name: {
@@ -26,6 +72,7 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
+    userInfo: userInfoSchema,
   },
   { versionKey: false, timestamps: true }
 );
@@ -43,9 +90,51 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).pattern(passwordRegex).required(),
 });
 
+const addUserInfoSchema = Joi.object({
+  height: Joi.number().min(150).required(),
+  currentWeight: Joi.number().min(35).required(),
+  desiredtWeight: Joi.number().min(35).required(),
+  birthday: Joi.date()
+    .max("now")
+    .custom((value, helpers) => {
+      const age = new Date().getFullYear() - value.getFullYear();
+      if (age < 18) {
+        return helpers.error("date.min", { limit: "18 years" });
+      }
+      return value;
+    }, "Mininum age validation")
+    .required(),
+  blood: Joi.number().valid(1, 2, 3, 4).required(),
+  sex: Joi.string().valid("male", "female").required(),
+  levelActivity: Joi.number().valid(1, 2, 3, 4, 5).required(),
+});
+
+const updateUserSchema = Joi.object({
+  name: Joi.string(),
+  userInfo: Joi.object({
+    height: Joi.number().min(150),
+    currentWeight: Joi.number().min(35),
+    desiredtWeight: Joi.number().min(35),
+    birthday: Joi.date()
+      .max("now")
+      .custom((value, helpers) => {
+        const age = new Date().getFullYear() - value.getFullYear();
+        if (age < 18) {
+          return helpers.error("date.min", { limit: "18 years" });
+        }
+        return value;
+      }, "Mininum age validation"),
+    blood: Joi.number().valid(1, 2, 3, 4),
+    sex: Joi.string().valid("male", "female"),
+    levelActivity: Joi.number().valid(1, 2, 3, 4, 5),
+  }),
+})
+
 const schemas = {
   registerSchema,
   loginSchema,
+  addUserInfoSchema,
+  updateUserSchema,
 };
 
 const User = model("user", userSchema);
