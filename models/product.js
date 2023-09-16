@@ -5,8 +5,14 @@ const productSchema = new Schema({
     calories: Number,
     category: String,
     title: String,
+    groupBloodNotAllowed: {
+        "1": Boolean,
+        "2": Boolean,
+        "3": Boolean,
+        "4": Boolean
+      },
 });
 
-const Product = model('product', productSchema);
+const Product = model('productcategories', productSchema);
 
 module.exports = Product;

@@ -9,13 +9,16 @@ const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
+const productRoutes = require('./routes/api/food');
+const productBtBlodType = require('./routes/api/food')
+
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-const productRoutes = require('./routes/api/food');
 app.use('/api/products', productRoutes);
+app.use('/api/products/byBloodType', productBtBlodType);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
