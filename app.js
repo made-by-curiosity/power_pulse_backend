@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
 
-// const usersRouter = require('./routes/api/users');
+const usersRouter = require('./routes/api/users');
 // const contactsRouter = require('./routes/api/contacts');
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// app.use('/api/users', usersRouter);
+app.use('/api/users', usersRouter);
 // app.use('/api/contacts', contactsRouter);
 
 app.use((req, res) => {

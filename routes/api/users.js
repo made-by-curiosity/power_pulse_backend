@@ -1,33 +1,28 @@
-const express = require('express');
+const express = require("express");
 
-const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
+const ctrl = require("../../controllers/users");
 
-// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
+const { validation, auth, upload } = require("../../middlewares");
 
-// const { authSchema } = require('../../models/user');
-// const { users: ctrl } = require('../../controllers');
+const { schemas } = require("../../models/users");
 
 const router = express.Router();
 
-// router.post('/register', validation(authSchema.authRegisterSchema), tryCatchWrapper(ctrl.register));
-// router.get('/verify/:verificationToken', tryCatchWrapper(ctrl.verifyEmail));
-// router.post(
-//   '/verify',
-//   validation(authSchema.resendVerificationSchema),
-//   tryCatchWrapper(ctrl.resendVerificationEmail)
-// );
+router.post("/register", validation(schemas.registerSchema), ctrl.register);
 
-// router.post('/login', validation(authSchema.authLoginSchema), tryCatchWrapper(ctrl.login));
+router.post("/login", validation(schemas.loginSchema), ctrl.login);
 
-// router.get('/current', auth, tryCatchWrapper(ctrl.getCurrent));
-// router.patch('/avatars', auth, upload.single('avatar'), tryCatchWrapper(ctrl.updateAvatar));
-// router.patch(
-//   '/',
-//   auth,
-//   validation(authSchema.subscriptionUpdateSchema),
-//   tryCatchWrapper(ctrl.updateSubscription)
-// );
+router.post("/info", auth, validation(schemas.addUserInfoSchema), ctrl.addInfo);
 
-// router.post('/logout', auth, tryCatchWrapper(ctrl.logout));
+router.put(
+  "/info",
+  auth,
+  validation(schemas.updateUserSchema),
+  ctrl.updateInfo
+);
+
+router.get("/info", auth, ctrl.getInfo);
+
+router.post("/logout", auth, ctrl.logOut);
 
 module.exports = router;
