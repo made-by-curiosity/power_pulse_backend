@@ -14,6 +14,7 @@ const productBtBlodType = require('./routes/api/food');
 const exercisesRoutes = require('./routes/api/exercises');
 const bodyPartsRoutes = require('./routes/api/exercises');
 const equipment = require('./routes/api/exercises');
+const muscles = require('./routes/api/exercises');
 
 app.use(logger(formatsLogger));
 app.use(cors());
@@ -25,6 +26,7 @@ app.use('/api/products/byBloodType', productBtBlodType);
 app.use('/api/exercises', exercisesRoutes);
 app.use('/api/exercises/body-parts', bodyPartsRoutes);
 app.use('/api/exercises/equipment', equipment);
+app.use('/api/exercises/muscles', muscles);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

@@ -16,9 +16,15 @@ const getAllEquipment = async (req, res) => {
         res.json(equipment);
 };
 
+const getAllMuscles = async (req, res) => {
+    const muscles = await Filters.find({filter: "Muscles"});
+        res.json(muscles);
+};
+
 module.exports = {
     getAllExercises: tryCatchWrapper(getAllExercises),
     getAllBodyParts: tryCatchWrapper(getAllBodyParts),
     getAllEquipment: tryCatchWrapper(getAllEquipment),
+    getAllMuscles: tryCatchWrapper(getAllMuscles),
 };
     
