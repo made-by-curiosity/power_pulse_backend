@@ -4,9 +4,10 @@ const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares
 
 const router = express.Router();
 
-const { getAllExercises, getAllBodyParts } = require('../../controllers/exercises');
+const { getAllExercises, getAllBodyParts, getAllEquipment } = require('../../controllers/exercises');
 
 router.get('/', getAllExercises);
-router.get('/body-parts', getAllBodyParts );
+router.get('/body-parts', getAllBodyParts);
+router.get('/equipment', getAllEquipment);
 
 module.exports = router;

@@ -7,12 +7,18 @@ const getAllExercises = async (req, res) => {
 };
 
 const getAllBodyParts = async (req, res) => {
-    const bodyParts = await Filters.find();
+    const bodyParts = await Filters.find({filter:"Body parts"});
         res.json(bodyParts);
+};
+
+const getAllEquipment = async (req, res) => {
+    const equipment = await Filters.find({filter: "Equipment"});
+        res.json(equipment);
 };
 
 module.exports = {
     getAllExercises: tryCatchWrapper(getAllExercises),
     getAllBodyParts: tryCatchWrapper(getAllBodyParts),
+    getAllEquipment: tryCatchWrapper(getAllEquipment),
 };
     

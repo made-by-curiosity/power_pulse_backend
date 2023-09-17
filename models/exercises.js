@@ -11,14 +11,13 @@ const exercisesSchema = new Schema({
 });
 
 const filterSchema = new Schema({
-    
-filter: String,
-name: String,
-imgURL: String,
+    filter: String,
+    name: String,
+    imgURL: String,
 });
 
 const Exercises = model('exercises', exercisesSchema);
-const Filters = model('filter', filterSchema);
+const Filters = model('filters', filterSchema);
 
 module.exports = {
     Exercises,
