@@ -10,11 +10,11 @@ const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 const productRoutes = require('./routes/api/food');
-const productBtBlodType = require('./routes/api/food');
+const productBtBlodTypeRoutes = require('./routes/api/food');
+
 const exercisesRoutes = require('./routes/api/exercises');
-const bodyPartsRoutes = require('./routes/api/exercises');
-const equipment = require('./routes/api/exercises');
-const muscles = require('./routes/api/exercises');
+
+const filtersRoutes = require('./routes/api/filters')
 
 app.use(logger(formatsLogger));
 app.use(cors());
@@ -22,11 +22,11 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/api/products', productRoutes);
-app.use('/api/products/byBloodType', productBtBlodType);
-app.use('/api/exercises', exercisesRoutes);
-app.use('/api/exercises/body-parts', bodyPartsRoutes);
-app.use('/api/exercises/equipment', equipment);
-app.use('/api/exercises/muscles', muscles);
+app.use('/api/products/byBloodType', productBtBlodTypeRoutes);
+
+app.use('/api', exercisesRoutes);
+
+app.use('/api', filtersRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
