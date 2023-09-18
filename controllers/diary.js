@@ -5,12 +5,25 @@ const { receiveOwner } = require('../helpers');
 
 const { Product, Exercise, schemas } = diary;
 
-const getByDate = async (req, res) => {
-	const { _id: owner } = req.user; 
-	const { page = 1, limit = 20, ...filters } = req.query;
-	const skip = (page - 1) * limit;
+const getByDateProduct = async (req, res) => {
+	const { error } = schemas.getSchema.validate(req.body);
+	if (error) throw BadRequest('missing required name field');
 
-	const listContacts = await Contact.find({ owner, ...filters }, '-owner -token -createdAt -updatedAt', { skip, limit });
+	const { _id: owner } = req.user; 
+	const { date } = req.body;
+
+	const listContacts = await Product.find({ owner, date }, '-owner');
+	res.json(listContacts);
+}
+
+const getByDateExercise = async (req, res) => {
+	const { error } = schemas.getSchema.validate(req.body);
+	if (error) throw BadRequest('missing required name field');
+
+	const { _id: owner } = req.user; 
+	const { date } = req.body;
+
+	const listContacts = await Exercise.find({ owner, date: date });
 	res.json(listContacts);
 }
 
@@ -33,21 +46,28 @@ const postAddExercise = async (req, res) => {
 };
 
 const deleteByNameAndDateProduct = async (req, res) => {
+	const { error } = schemas.deleteSchema.validate(req.body);
+	if (error) throw BadRequest('missing required name field');
+
 	const deletedProduct = await Product.findOneAndDelete(receiveOwner(req));
 
-	if (!deletedProduct) throw NotFound('');
+	if (!deletedProduct) throw NotFound('Not found');
 	res.json({ 'message': 'product deleted' });
 };
 
 const deleteByNameAndDateExercise = async (req, res) => {
+	const { error } = schemas.deleteSchema.validate(req.body);
+	if (error) throw BadRequest('missing required name field');
+
 	const deletedExercise = await Exercise.findOneAndDelete(receiveOwner(req));
 
-	if (!deletedExercise) throw NotFound('');
+	if (!deletedExercise) throw NotFound('Not found');
 	res.json({ 'message': 'exercise deleted' });
 };
 
 module.exports = {
-	getByDate: tryCatchWrapper(getByDate),
+	getByDateProduct: tryCatchWrapper(getByDateProduct),
+	getByDateExercise: tryCatchWrapper(getByDateExercise),
 	postAddProduct: tryCatchWrapper(postAddProduct),
 	postAddExercise: tryCatchWrapper(postAddExercise),
 	deleteByNameAndDateProduct: tryCatchWrapper(deleteByNameAndDateProduct),

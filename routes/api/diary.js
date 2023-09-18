@@ -1,13 +1,14 @@
 const express = require('express');
 const { ctrlDiary } = require('../../controllers');
-const { isValidId, auth } = require('../../middlewares');
+const { auth } = require('../../middlewares');
 
 const router = express.Router();
 
-router.get('/date', auth, ctrlDiary.getByDate);
+router.get('/product', auth, ctrlDiary.getByDateProduct);
+router.get('/exercise', auth, ctrlDiary.getByDateExercise);
 router.post('/product', auth, ctrlDiary.postAddProduct);
 router.post('/exercise', auth, ctrlDiary.postAddExercise);
-router.delete('/product/:name/date', auth, isValidId, ctrlDiary.deleteByNameAndDateProduct);
-router.delete('/exercise/:name/date', auth, isValidId, ctrlDiary.deleteByNameAndDateExercise);
+router.delete('/product', auth, ctrlDiary.deleteByNameAndDateProduct);
+router.delete('/exercise', auth, ctrlDiary.deleteByNameAndDateExercise);
 
 module.exports = router

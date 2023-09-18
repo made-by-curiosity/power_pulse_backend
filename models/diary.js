@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { Schema, model } = require('mongoose');
-const { handleSchemaValidationErrors } = require('../helpers');
+const { handleSchemaValidationErrors, formatToday } = require('../helpers');
 
 const DATE_REGEXP = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
@@ -21,7 +21,7 @@ const productSchema = new Schema({
 	},
 	date: {
 		type: String,
-		default: new Date().setHours(0, 0, 0, 0),
+		required: true,
 		match: DATE_REGEXP,
 	},
 	owner: {
@@ -51,7 +51,7 @@ const exerciseSchema = new Schema({
 	}, 
 	date: {
 		type: String,
-		default: new Date().setHours(0, 0, 0, 0),
+		required: true,
 		match: DATE_REGEXP,
 	},
 	owner: {
@@ -70,19 +70,19 @@ const getSchema = Joi.object({
 
 const postProductSchema = Joi.object({
 	name: Joi.string().required(),
-	amount: Joi.number().required(),
-	calories: Joi.number().required(),
+	amount: Joi.number().min(1).required(),
+	calories: Joi.number().min(1).required(),
 	date: Joi.string().pattern(DATE_REGEXP),
 });
 
 const postExerciseSchema = Joi.object({
 	name: Joi.string().required(),
-	time: Joi.number().required(),
-	calories: Joi.number().required(),
+	time: Joi.number().min(1).required(),
+	calories: Joi.number().min(1).required(),
 	date: Joi.string().pattern(DATE_REGEXP),
 });
 
-const delSchema = Joi.object({
+const deleteSchema = Joi.object({
 	name: Joi.string().required(),
 	date: Joi.string().pattern(DATE_REGEXP),
 });
@@ -91,7 +91,7 @@ const schemas = {
 	getSchema,
 	postProductSchema,
 	postExerciseSchema,
-	delSchema,
+	deleteSchema,
 };
 
 module.exports = {
