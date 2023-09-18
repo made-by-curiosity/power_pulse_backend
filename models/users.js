@@ -10,21 +10,17 @@ const userParamsSchema = new Schema(
     height: {
       type: Number,
       min: 150,
-      // required: [true, "Height is required"],
     },
     currentWeight: {
       type: Number,
       min: 35,
-      // required: [true, "currentWeight is required"],
     },
     desiredtWeight: {
       type: Number,
       min: 35,
-      // required: [true, "desiredtWeight is required"],
     },
     birthday: {
       type: Date,
-      // required: [true, "Birthday is required"],
       validate: {
         validator: function (birthday) {
           const age = new Date().getFullYear() - birthday.getFullYear();
@@ -36,12 +32,10 @@ const userParamsSchema = new Schema(
     blood: {
       type: Number,
       enum: [1, 2, 3, 4],
-      // required: [true, "blood type is required"],
     },
     sex: {
       type: String,
       enum: ["male", "female"],
-      // required: [true, "sex is required"],
     },
     levelActivity: {
       type: Number,
@@ -75,7 +69,6 @@ const userSchema = new Schema(
     avatarUrl: {
       type: String,
       default: "",
-      // required: true,
     },
     userParams: { type: userParamsSchema, default: {} },
   },
