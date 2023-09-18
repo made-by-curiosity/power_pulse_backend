@@ -1,8 +1,7 @@
-// пример реэкспорта
 const ctrlDiary = require('./diary');
-// const users = require('./users');
+const users = require('./users');
 
 module.exports = {
   ctrlDiary,
-//   users,
+  users,
 }
