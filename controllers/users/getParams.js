@@ -20,6 +20,7 @@ const getParams = async (req, res) => {
   res.status(200).json({
     user: {
       name: user.name,
+      avatarUrl: user.avatarUrl,
       userParams: user.userParams,
     },
     bmr,

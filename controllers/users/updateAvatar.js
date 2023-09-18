@@ -10,11 +10,12 @@ cloudinary.config({
 });
 
 const updateAvatar = async (req, res) => {
-  const { email } = req.user;
+  const { email, _id } = req.user;
   const { path } = req.file;
 
   const result = await cloudinary.uploader.upload(path, {
     folder: "power_pulse_avatars",
+    public_id: _id,
   });
 
   const user = await User.findOneAndUpdate(

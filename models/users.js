@@ -74,7 +74,8 @@ const userSchema = new Schema(
     },
     avatarUrl: {
       type: String,
-      required: true,
+      default: "",
+      // required: true,
     },
     userParams: { type: userParamsSchema, default: {} },
   },
