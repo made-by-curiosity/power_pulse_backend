@@ -30,6 +30,8 @@ app.use('/api', exercisesRoutes);
 
 app.use('/api', filtersRoutes);
 
+app.use('/api/users', usersRouter);
+
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
