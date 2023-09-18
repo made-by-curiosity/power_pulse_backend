@@ -3,7 +3,8 @@ const Joi = require("joi");
 const { handleSchemaValidationErrors } = require("../helpers");
 
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const passwordRegex = /^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/;
+const passwordRegex =
+  /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$/;
 
 const userParamsSchema = new Schema(
   {
@@ -15,7 +16,7 @@ const userParamsSchema = new Schema(
       type: Number,
       min: 35,
     },
-    desiredtWeight: {
+    desiredWeight: {
       type: Number,
       min: 35,
     },
@@ -23,7 +24,13 @@ const userParamsSchema = new Schema(
       type: Date,
       validate: {
         validator: function (birthday) {
-          const age = new Date().getFullYear() - birthday.getFullYear();
+          const today = new Date();
+          const birthDate = new Date(birthday);
+          let age = today.getFullYear() - birthDate.getFullYear();
+          const m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
           return age >= 18;
         },
         message: "User must be 18 years or older. ",
@@ -91,11 +98,17 @@ const loginSchema = Joi.object({
 const updateUserParamsSchema = Joi.object({
   height: Joi.number().min(150).required(),
   currentWeight: Joi.number().min(35).required(),
-  desiredtWeight: Joi.number().min(35).required(),
+  desiredWeight: Joi.number().min(35).required(),
   birthday: Joi.date()
     .max("now")
     .custom((value, helpers) => {
-      const age = new Date().getFullYear() - value.getFullYear();
+      const today = new Date();
+      const birthDate = new Date(value);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
       if (age < 18) {
         return helpers.error("date.min", { limit: "18 years" });
       }
