@@ -5,11 +5,14 @@ const { required } = require('joi');
 
 require('dotenv').config();
 
+// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
+
+const usersRouter = require('./routes/api/users');
+// const contactsRouter = require('./routes/api/contacts');
+
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
-
-const usersRouter = require('./routes/api/users');
 
 const productRoutes = require('./routes/api/food');
 const productBtBlodTypeRoutes = require('./routes/api/food');
@@ -31,6 +34,7 @@ app.use('/api', exercisesRoutes);
 app.use('/api', filtersRoutes);
 
 app.use('/api/users', usersRouter);
+// app.use('/api/contacts', contactsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
