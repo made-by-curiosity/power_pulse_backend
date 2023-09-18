@@ -9,6 +9,8 @@ const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
+const usersRouter = require('./routes/api/users');
+
 const productRoutes = require('./routes/api/food');
 const productBtBlodTypeRoutes = require('./routes/api/food');
 
