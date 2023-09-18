@@ -13,20 +13,29 @@ router.post("/register", validation(schemas.registerSchema), users.register);
 router.post("/login", validation(schemas.loginSchema), users.login);
 
 router.post(
-  "/info",
+  "/params",
   auth,
-  validation(schemas.addUserInfoSchema),
-  users.addInfo
+  validation(schemas.updateUserParamsSchema),
+  users.updateParams
 );
 
 router.put(
-  "/info",
+  "/params",
   auth,
-  validation(schemas.updateUserSchema),
-  users.updateInfo
+  validation(schemas.updateUserParamsSchema),
+  users.updateParams
 );
 
-router.get("/info", auth, users.getInfo);
+router.get("/params", auth, users.getParams);
+
+router.patch(
+  "/username",
+  auth,
+  validation(schemas.updateUsername),
+  users.updateUsername
+);
+
+router.patch("/avatars", auth, upload.single("avatar"), users.updateAvatar);
 
 router.post("/logout", auth, users.logOut);
 

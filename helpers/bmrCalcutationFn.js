@@ -22,8 +22,8 @@ const bmrCalculationFn = (
 
   const age = new Date().getFullYear() - birthdayDate.getFullYear();
   return (
-    (10 * desiredtWeight + 6.25 * height - 5 * age + sexIndex[sex]) *
-    activityIndex[levelActivity]
+    Math.round((10 * desiredtWeight + 6.25 * height - 5 * age + sexIndex[sex]) *
+    activityIndex[levelActivity])
   );
 };
 
