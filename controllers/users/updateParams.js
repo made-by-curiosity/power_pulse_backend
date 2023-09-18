@@ -15,11 +15,11 @@ const updateParams = async (req, res) => {
     { new: true }
   );
 
-  const { desiredtWeight, height, birthday, sex, levelActivity } =
+  const { desiredWeight, height, birthday, sex, levelActivity } =
     user.userParams;
 
   const bmr = bmrCalculationFn(
-    desiredtWeight,
+    desiredWeight,
     height,
     birthday,
     sex,
