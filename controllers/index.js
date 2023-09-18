@@ -1,8 +1,8 @@
 // пример реэкспорта
-// const contacts = require('./contacts');
+const ctrlDiary = require('./diary');
 // const users = require('./users');
 
-// module.exports = {
-//   contacts,
+module.exports = {
+  ctrlDiary,
 //   users,
-// };
+}

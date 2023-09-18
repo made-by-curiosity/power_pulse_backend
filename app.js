@@ -4,10 +4,8 @@ const cors = require('cors');
 
 require('dotenv').config();
 
-// всё, что закомментировано - можно удалять, это просто пример как было у нас в домашках
-
 const usersRouter = require('./routes/api/users');
-// const contactsRouter = require('./routes/api/contacts');
+const diaryRouter = require('./routes/api/diary');
 
 const app = express();
 
@@ -19,7 +17,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/api/users', usersRouter);
-// app.use('/api/contacts', contactsRouter);
+app.use('/api/diary', diaryRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
