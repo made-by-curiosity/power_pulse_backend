@@ -4,11 +4,11 @@ const { auth } = require('../../middlewares');
 
 const router = express.Router();
 
-router.get('/product', auth, ctrlDiary.getByDateProduct);
-router.get('/exercise', auth, ctrlDiary.getByDateExercise);
-router.post('/product', auth, ctrlDiary.postAddProduct);
-router.post('/exercise', auth, ctrlDiary.postAddExercise);
-router.delete('/product', auth, ctrlDiary.deleteByNameAndDateProduct);
-router.delete('/exercise', auth, ctrlDiary.deleteByNameAndDateExercise);
+router.get('/meal', auth, ctrlDiary.getByDateMeal);
+router.get('/workout', auth, ctrlDiary.getByDateWorkout);
+router.post('/meal', auth, ctrlDiary.postAddMeal);
+router.post('/workout', auth, ctrlDiary.postAddWorkout);
+router.delete('/meal', auth, ctrlDiary.deleteByNameAndDateMeal);
+router.delete('/workout', auth, ctrlDiary.deleteByNameAndDateWorkout);
 
 module.exports = router

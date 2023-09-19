@@ -4,7 +4,7 @@ const { handleSchemaValidationErrors, formatToday } = require('../helpers');
 
 const DATE_REGEXP = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
-const productSchema = new Schema({
+const mealSchema = new Schema({
 	name: {
 		type: String,
 		required: [true, 'Set name for product'],
@@ -21,7 +21,7 @@ const productSchema = new Schema({
 	},
 	date: {
 		type: String,
-		required: true,
+		default: formatToday(),
 		match: DATE_REGEXP,
 	},
 	owner: {
@@ -31,10 +31,10 @@ const productSchema = new Schema({
 	},
 }, {versionKey: false, timestamps: false});
 
-productSchema.post('save', handleSchemaValidationErrors);
-const Product = model('product', productSchema);
+mealSchema.post('save', handleSchemaValidationErrors);
+const Meal = model('meal', mealSchema);
 
-const exerciseSchema = new Schema({
+const workoutSchema = new Schema({
 	name: {
 		type: String,
 		required: [true, 'Set name for exercise'],
@@ -51,7 +51,7 @@ const exerciseSchema = new Schema({
 	}, 
 	date: {
 		type: String,
-		required: true,
+		default: formatToday(),
 		match: DATE_REGEXP,
 	},
 	owner: {
@@ -61,21 +61,21 @@ const exerciseSchema = new Schema({
 	},
 }, {versionKey: false, timestamps: false});
 
-exerciseSchema.post('save', handleSchemaValidationErrors);
-const Exercise = model('exercise', exerciseSchema);
+workoutSchema.post('save', handleSchemaValidationErrors);
+const Workout = model('workout', workoutSchema);
 
 const getSchema = Joi.object({
 	date: Joi.string().pattern(DATE_REGEXP).required(),
 })
 
-const postProductSchema = Joi.object({
+const postMealSchema = Joi.object({
 	name: Joi.string().required(),
 	amount: Joi.number().min(1).required(),
 	calories: Joi.number().min(1).required(),
 	date: Joi.string().pattern(DATE_REGEXP),
 });
 
-const postExerciseSchema = Joi.object({
+const postWorkoutSchema = Joi.object({
 	name: Joi.string().required(),
 	time: Joi.number().min(1).required(),
 	calories: Joi.number().min(1).required(),
@@ -89,13 +89,13 @@ const deleteSchema = Joi.object({
 
 const schemas = {
 	getSchema,
-	postProductSchema,
-	postExerciseSchema,
+	postMealSchema,
+	postWorkoutSchema,
 	deleteSchema,
 };
 
 module.exports = {
-	Product,
-	Exercise,
+	Meal,
+	Workout,
 	schemas,
 }
