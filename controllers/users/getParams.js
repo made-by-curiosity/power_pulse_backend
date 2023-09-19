@@ -6,11 +6,11 @@ const getParams = async (req, res) => {
   const { email } = req.user;
   const user = await User.findOne({ email });
 
-  const { desiredtWeight, height, birthday, sex, levelActivity } =
+  const { desiredWeight, height, birthday, sex, levelActivity } =
     user.userParams;
 
   const bmr = bmrCalculationFn(
-    desiredtWeight,
+    desiredWeight,
     height,
     birthday,
     sex,
