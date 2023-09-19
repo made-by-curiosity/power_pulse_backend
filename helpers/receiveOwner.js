@@ -1,10 +1,9 @@
 const receiveOwner = (req) => {
 	const { _id: owner } = req.user;
-	const { name, date } = req.body;
+	const { id } = req.params;
 
 	return {
-		name,
-		date,
+		_id: id,
 		owner,
 	}
 }
