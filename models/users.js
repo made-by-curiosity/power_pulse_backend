@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-const { handleSchemaValidationErrors } = require("../helpers");
+const { handleSchemaValidationErrors, getAge } = require("../helpers");
 
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const passwordRegex =
@@ -24,14 +24,7 @@ const userParamsSchema = new Schema(
       type: Date,
       validate: {
         validator: function (birthday) {
-          const today = new Date();
-          const birthDate = new Date(birthday);
-          let age = today.getFullYear() - birthDate.getFullYear();
-          const m = today.getMonth() - birthDate.getMonth();
-          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-          }
-          return age >= 18;
+          return getAge(birthday) >= 18;
         },
         message: "User must be 18 years or older. ",
       },
@@ -102,14 +95,7 @@ const updateUserParamsSchema = Joi.object({
   birthday: Joi.date()
     .max("now")
     .custom((value, helpers) => {
-      const today = new Date();
-      const birthDate = new Date(value);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-      }
-      if (age < 18) {
+      if (getAge(value) < 18) {
         return helpers.error("date.min", { limit: "18 years" });
       }
       return value;
