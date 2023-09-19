@@ -10,8 +10,16 @@ const exercisesSchema = new Schema({
     time: Number,
 });
 
+const filterSchema = new Schema({
+    filter: String,
+    name: String,
+    imgURL: String,
+});
+
 const Exercises = model('exercises', exercisesSchema);
+const Filters = model('filters', filterSchema);
 
 module.exports = {
     Exercises,
+    Filters,
 };
