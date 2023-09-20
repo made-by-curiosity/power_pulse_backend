@@ -1,25 +1,33 @@
-const Product = require('../models/products'); 
+const { Product, Category } = require('../models/products'); 
 const tryCatchWrapper = require('../middlewares/tryCatchWrapper');
 
 const getAllProductCategories = async (req, res) => {
-  const result = await Product.find();
+  const result = await Category.find();
   res.json(result);
 };
 
-const getAllProductsByBloodType = async (req, res) => {
-  const { bloodType } = req.params;
+const getProductsByBloodType = async (req, res) => {
+  const { userParams } = req.user;
+  const { blood } = userParams;
+  const { recommended } = req.query; 
 
-  if (!['1', '2', '3', '4'].includes(bloodType)) {
-    return res.status(404).json({ "message": "Not found" });
+  let query = {};
+
+  if (blood) {
+    query[`groupBloodNotAllowed.${blood}`] = { $ne: true };
   }
 
-  const query = { [`groupBloodNotAllowed.${bloodType}`]: true };
-  const products = await Product.find(query);
+  if (recommended === 'true') {
+    query['recommended'] = true;
+  } else if (recommended === 'false') {
+    query['recommended'] = false;
+  }
 
-  res.json(products);
+  const filteredProductsByBloodType = await Product.find(query);
+  res.json(filteredProductsByBloodType);
 };
 
 module.exports = {
   getAllProductCategories: tryCatchWrapper(getAllProductCategories),
-  getAllProductsByBloodType: tryCatchWrapper(getAllProductsByBloodType),
+  getAllProductsByBloodType: tryCatchWrapper(getProductsByBloodType),
 };

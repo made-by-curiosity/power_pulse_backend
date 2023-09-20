@@ -11,9 +11,9 @@ const {
     getAllMuscles, 
 } = require('../../controllers/exercises');
 
-router.get('/', getAllExercises);
-router.get('/body-parts', getAllBodyParts);
-router.get('/equipment', getAllEquipment);
-router.get('/muscles', getAllMuscles);
+router.get('/', auth, getAllExercises);
+router.get('/body-parts', auth, getAllBodyParts);
+router.get('/equipment', auth, getAllEquipment);
+router.get('/muscles', auth, getAllMuscles);
 
 module.exports = router;

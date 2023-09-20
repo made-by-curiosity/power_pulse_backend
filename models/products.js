@@ -13,6 +13,14 @@ const productSchema = new Schema({
       },
 });
 
-const Product = model('productcategories', productSchema);
+const categoryProductSchema = new Schema({
+  productsCategories: Array,
+});
 
-module.exports = Product;
+const Product = model('products', productSchema);
+const Category = model('productsCategories', categoryProductSchema);
+
+module.exports = {
+  Product,
+  Category,
+};
