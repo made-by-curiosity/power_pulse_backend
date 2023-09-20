@@ -6,6 +6,7 @@ const mealSchema = new Schema(
   {
     productId: {
       type: Schema.Types.ObjectId,
+      ref: 'products',
       required: [true, 'Set product ID'],
     },
     amount: {
