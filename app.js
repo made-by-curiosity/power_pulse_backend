@@ -39,9 +39,7 @@ app.use('/api/exercises/body-parts', filtersRoutes);
 app.use('/api/exercises/equipment', filtersRoutes);
 app.use('/api/exercises/muscles', filtersRoutes);
 
-
 app.use('/api/users', usersRouter);
-// app.use('/api/contacts', contactsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

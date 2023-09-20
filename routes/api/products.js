@@ -4,11 +4,11 @@ const router = express.Router();
 
 const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
 
-const { getAllProductCategories, getAllProductsByBloodType } = require('../../controllers/products');
+const { getAllProductCategories, getProductsByBloodType } = require('../../controllers/products');
 
 
 router.get('/', getAllProductCategories);
 
-router.get('/byBloodType/:bloodType', getAllProductsByBloodType);
+router.get('/byBloodType', getProductsByBloodType);
 
 module.exports = router;

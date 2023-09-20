@@ -29,5 +29,5 @@ const getProductsByBloodType = async (req, res) => {
 
 module.exports = {
   getAllProductCategories: tryCatchWrapper(getAllProductCategories),
-  getAllProductsByBloodType: tryCatchWrapper(getProductsByBloodType),
+  getProductsByBloodType: tryCatchWrapper(getProductsByBloodType),
 };
