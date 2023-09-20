@@ -1,8 +1,9 @@
 const users = require("./users");
 const auth = require("./auth");
+const ctrlDiary = require("./diary");
 
 module.exports = {
-  ctrlDiary,
-  users,
+	users,
   auth,
+  ctrlDiary,
 };
