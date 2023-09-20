@@ -6,7 +6,7 @@ const workoutSchema = new Schema(
   {
     exerciseId: {
       type: Schema.Types.ObjectId,
-      ref: 'exercises',
+      ref: 'exercise',
       required: [true, 'Set exercise ID'],
     },
     time: {
