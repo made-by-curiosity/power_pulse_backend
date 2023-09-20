@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
+const { validation, tryCatchWrapper, authenticate, upload } = require('../../middlewares');
 
 const router = express.Router();
 
@@ -11,9 +11,9 @@ const {
     getAllMuscles, 
 } = require('../../controllers/exercises');
 
-router.get('/', auth, getAllExercises);
-router.get('/body-parts', auth, getAllBodyParts);
-router.get('/equipment', auth, getAllEquipment);
-router.get('/muscles', auth, getAllMuscles);
+router.get('/', authenticate, getAllExercises);
+router.get('/body-parts',authenticate, getAllBodyParts);
+router.get('/equipment',authenticate, getAllEquipment);
+router.get('/muscles',authenticate, getAllMuscles);
 
 module.exports = router;

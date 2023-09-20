@@ -1,23 +1,23 @@
-const { Exercises, Filters } = require('../models/exercises');
+const { Exercise, Filter, } = require('../models/exercise');
 const tryCatchWrapper = require('../middlewares/tryCatchWrapper');
 
 const getAllExercises = async (req, res) => {
-    const result = await Exercises.find();
+    const result = await Exercise.find();
     res.json(result);
 };
 
 const getAllBodyParts = async (req, res) => {
-    const bodyParts = await Filters.find({filter:"Body parts"});
+    const bodyParts = await Filter.find({filter:"Body parts"});
         res.json(bodyParts);
 };
 
 const getAllEquipment = async (req, res) => {
-    const equipment = await Filters.find({filter: "Equipment"});
+    const equipment = await Filter.find({filter: "Equipment"});
         res.json(equipment);
 };
 
 const getAllMuscles = async (req, res) => {
-    const muscles = await Filters.find({filter: "Muscles"});
+    const muscles = await Filter.find({filter: "Muscles"});
         res.json(muscles);
 };
 

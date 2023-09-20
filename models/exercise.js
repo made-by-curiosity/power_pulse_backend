@@ -16,8 +16,8 @@ const filterSchema = new Schema({
   imgURL: String,
 });
 
-const Exercise = model('exercise', exerciseSchema);
-const Filter = model('filter', filterSchema);
+const Exercise = model('exercises', exerciseSchema);
+const Filter = model('filters', filterSchema);
 
 module.exports = {
   Exercise,
