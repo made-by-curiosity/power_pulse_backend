@@ -1,7 +1,6 @@
-const { endOfDay, startOfDay } = require('date-fns');
+
 const { diary } = require('../../models');
 
-const { meal } = diary;
 
 const getTotalCaloriesWorkouts = async (req, res) => {
   const { _id: owner } = req.user;
