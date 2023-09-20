@@ -1,7 +1,11 @@
-const diary = require('./diary');
 const users = require('./users');
+const diary = require('./diary');
+const exercise = require('./exercise');
+// const product = require('./product');
 
 module.exports = {
-  diary,
-  users,
+	users,
+	diary,
+	exercise,
+	// product,
 };

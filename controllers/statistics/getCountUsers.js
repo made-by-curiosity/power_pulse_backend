@@ -1,8 +1,8 @@
 const { users } = require('../../models');
 
 const getCountUsers = async (req, res) => {
-	const сountWorkouts = await users.User.countDocuments();
-  res.json(сountWorkouts);
+	const countUsers = await users.User.countDocuments();
+  res.json(countUsers);
 };
 
 module.exports = getCountUsers;

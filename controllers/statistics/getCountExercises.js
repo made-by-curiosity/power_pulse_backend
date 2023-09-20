@@ -1,23 +1,8 @@
-const { diary } = require('../../models');
+const { exercise } = require('../../models');
 
 const getCountExercises = async (req, res) => {
-  const { _id: owner } = req.user;
-
-  const today = new Date();
-  const { date = today } = req.query;
-
-  const listMeal = await meal.Meal.find(
-    {
-      owner,
-      createdAt: {
-        $gte: startOfDay(new Date(date)),
-        $lte: endOfDay(new Date(date)),
-      },
-    },
-    '-owner -createdAt -updatedAt'
-  ).populate('productId', '_id weight calories category title groupBloodNotAllowed');
-
-  res.json(listMeal);
+	const countExercises = await exercise.Exercise.countDocuments();
+  res.json(countExercises);
 };
 
 module.exports = getCountExercises;
