@@ -1,5 +1,7 @@
+const getAge = require("./getAge");
+
 const bmrCalculationFn = (
-  desiredtWeight,
+  desiredWeight,
   height,
   birthday,
   sex,
@@ -18,12 +20,11 @@ const bmrCalculationFn = (
     female: -161,
   };
 
-  const birthdayDate = new Date(birthday);
+  const age = getAge(birthday);
 
-  const age = new Date().getFullYear() - birthdayDate.getFullYear();
-  return (
-    Math.round((10 * desiredtWeight + 6.25 * height - 5 * age + sexIndex[sex]) *
-    activityIndex[levelActivity])
+  return Math.round(
+    (10 * desiredWeight + 6.25 * height - 5 * age + sexIndex[sex]) *
+      activityIndex[levelActivity]
   );
 };
 

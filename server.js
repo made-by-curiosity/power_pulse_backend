@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
+// these 2 model imports must be deleted
+require('./models/product');
+require('./models/exercise');
 
 const app = require('./app');
+
+mongoose.set('strictQuery', true);
 
 const { DB_HOST, PORT = 3000 } = process.env;
 
