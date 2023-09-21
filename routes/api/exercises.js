@@ -1,9 +1,6 @@
 const express = require('express');
-
-const { validation, tryCatchWrapper, authenticate, upload } = require('../../middlewares');
-
+const { authenticate, } = require('../../middlewares');
 const router = express.Router();
-
 const { 
     getAllExercises,
     getAllBodyParts, 

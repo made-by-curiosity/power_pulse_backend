@@ -1,10 +1,10 @@
 const express = require('express');
-
 const router = express.Router();
-
-const { validation, tryCatchWrapper, auth, upload } = require('../../middlewares');
-
-const { getAllProductCategories, getProductsByBloodType } = require('../../controllers/products');
+const { authenticate } = require('../../middlewares');
+const { 
+    getAllProductCategories,
+     getProductsByBloodType
+ } = require('../../controllers/products');
 
 /**
  * @swagger
@@ -17,7 +17,7 @@ const { getAllProductCategories, getProductsByBloodType } = require('../../contr
  *         description: A list of product categories.
  */
 
-router.get('/', getAllProductCategories);
+router.get('/categories', authenticate, getAllProductCategories);
 
 /**
  * @swagger
@@ -30,6 +30,6 @@ router.get('/', getAllProductCategories);
  *         description: A list of products by blood type.
  */
 
-router.get('/byBloodType', getProductsByBloodType);
+router.get('/byBloodType', authenticate, getProductsByBloodType);
 
 module.exports = router;

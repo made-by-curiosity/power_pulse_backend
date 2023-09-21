@@ -7,25 +7,20 @@ const getAllProductCategories = async (req, res) => {
 };
 
 const getProductsByBloodType = async (req, res) => {
-  const { userParams } = req.user;
-  const { blood } = userParams;
-  const { recommended } = req.query; 
+  const { blood } = req.user.userParams;
+  const { recommended } = req.query;
 
-  let query = {};
+  const query = {};
 
   if (blood) {
-    query[`groupBloodNotAllowed.${blood}`] = { $ne: true };
-  }
-
-  if (recommended === 'true') {
-    query['recommended'] = true;
-  } else if (recommended === 'false') {
-    query['recommended'] = false;
+    query[`groupBloodNotAllowed.${blood}`] = recommended === 'false' ? false : true;
   }
 
   const filteredProductsByBloodType = await Product.find(query);
+
   res.json(filteredProductsByBloodType);
 };
+
 
 module.exports = {
   getAllProductCategories: tryCatchWrapper(getAllProductCategories),
