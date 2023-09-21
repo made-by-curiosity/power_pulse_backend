@@ -79,4 +79,23 @@ router.post("/login", validation(schemas.loginSchema), auth.login);
 
 router.post("/logout", authenticate, auth.logOut);
 
+/**
+ * @swagger
+ * /api/auth/current:
+ *   get:
+ *     summary: get current user information
+ *     description: Endpoint to get current user information.
+ *     tags:
+ *         - Auth
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: A successful response
+ *       401:
+ *         description: Unauthorized
+ */
+
+router.get("/current", authenticate, auth.getCurrent);
+
 module.exports = router;
