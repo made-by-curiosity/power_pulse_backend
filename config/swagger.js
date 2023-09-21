@@ -7,7 +7,7 @@ const swaggerOptions = {
       contact: {
         name: "",
       },
-      servers: ["http://localhost:3030/"],
+      servers: ["https://power-pulse.onrender.com"],
     },
     components: {
       securitySchemes: {
