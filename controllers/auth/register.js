@@ -34,10 +34,10 @@ const register = async (req, res) => {
   res.status(201).json({
     token,
     user: {
-      name: user.name,
-      email: user.email,
-      avatarUrl: user.avatarUrl,
-      userParams: user.userParams,
+      name: newUser.name,
+      email: newUser.email,
+      avatarUrl: newUser.avatarUrl,
+      userParams: newUser.userParams,
     },
   });
 };
