@@ -8,56 +8,81 @@ const {
     getAllMuscles, 
 } = require('../../controllers/exercises');
 
-/**
- * @swagger
- * /exercises:
- *   get:
- *     summary: Get all exercises
- *     description: Get a list of all exercises.
- *     responses:
- *       200:
- *         description: A list of exercises.
- */
-
-router.get('/', authenticate, getAllExercises);
 
 /**
  * @swagger
- * /exercises/body-parts:
+ * /api/exercises/categories:
  *   get:
- *     summary: Get all body parts
- *     description: Get a list of all body parts.
+ *     summary: Get all exercises.
+ *     tags:
+ *       - Exercises
  *     responses:
  *       200:
- *         description: A list of body parts.
+ *         description: A list of all exercises.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Exercise'
  */
-
-router.get('/body-parts',authenticate, getAllBodyParts);
+router.get('/categories', authenticate, getAllExercises);
 
 /**
  * @swagger
- * /exercises/equipment:
+ * /api/exercises/body-parts:
  *   get:
- *     summary: Get all types of equipment
- *     description: Get a list of all types of equipment for exercises.
+ *     summary: Get all body parts for exercises.
+ *     tags:
+ *       - Exercises
  *     responses:
  *       200:
- *         description: List of equipment types.
+ *         description: A list of all body parts for exercises.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Filter'
  */
-
-router.get('/equipment',authenticate, getAllEquipment);
+router.get('/body-parts', authenticate, getAllBodyParts);
 
 /**
  * @swagger
- * /exercises/muscles:
+ * /api/exercises/equipment:
  *   get:
- *     summary: Get all muscle groups
- *     description: Get a list of all muscle groups used in exercises.
+ *     summary: Get all equipment for exercises.
+ *     tags:
+ *       - Exercises
  *     responses:
  *       200:
- *         description: List of muscle groups.
+ *         description: A list of all equipment for exercises.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Filter'
  */
+router.get('/equipment', authenticate, getAllEquipment);
 
-router.get('/muscles',authenticate, getAllMuscles);
+/**
+ * @swagger
+ * /api/exercises/muscles:
+ *   get:
+ *     summary: Get all muscles for exercises.
+ *     tags:
+ *       - Exercises
+ *     responses:
+ *       200:
+ *         description: A list of all muscles for exercises.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Filter'
+ */
+router.get('/muscles', authenticate, getAllMuscles);
 
 module.exports = router;

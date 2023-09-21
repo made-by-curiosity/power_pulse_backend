@@ -6,30 +6,49 @@ const {
      getProductsByBloodType
  } = require('../../controllers/products');
 
+
 /**
  * @swagger
- * /products:
+ * /api/products/categories:
  *   get:
- *     summary: Get all product categories
- *     description: Get a list of all product categories.
+ *     summary: Get all product categories.
+ *     tags:
+ *       - Products
  *     responses:
  *       200:
- *         description: A list of product categories.
+ *         description: A list of all product categories.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Category'
  */
-
 router.get('/categories', authenticate, getAllProductCategories);
 
 /**
  * @swagger
- * /products/byBloodType:
+ * /api/products/byBloodType:
  *   get:
- *     summary: Get products by blood type
- *     description: Get a list of products by blood type.
+ *     summary: Get products by blood type.
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - in: query
+ *         name: recommended
+ *         schema:
+ *           type: boolean
+ *         description: Filter products by recommendation status (true or false).
  *     responses:
  *       200:
- *         description: A list of products by blood type.
+ *         description: A list of products filtered by blood type and recommendation status.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
  */
-
 router.get('/byBloodType', authenticate, getProductsByBloodType);
 
 module.exports = router;

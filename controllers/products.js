@@ -12,8 +12,10 @@ const getProductsByBloodType = async (req, res) => {
 
   const query = {};
 
-  if (blood) {
-    query[`groupBloodNotAllowed.${blood}`] = recommended === 'false' ? false : true;
+  if (recommended !== undefined) {
+    if (blood) {
+      query[`groupBloodNotAllowed.${blood}`] = recommended === 'false' ? false : true;
+    }
   }
 
   const filteredProductsByBloodType = await Product.find(query);
