@@ -9,3 +9,7 @@ const postAddMeal = async (req, res) => {
 };
 
 module.exports = postAddMeal;
+
+
+// подсчитаем количество документов, у которых name=Tom:
+// db.users.find({name: "Tom"}).count()
