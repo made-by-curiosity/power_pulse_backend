@@ -147,7 +147,6 @@ const swaggerOptions = {
     { name: "Auth", description: "Authentication" },
 		{ name: "Users", description: "Operations related to users" },
 		{ name: "Diary", description: "Operations related to diary" },
-		{ name: "Statistics", description: "Obtaining statistical data" },
   ],
 };
 

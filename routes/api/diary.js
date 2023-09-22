@@ -12,7 +12,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /api/diary/meal:
+ * /api/diary/meal{?date}:
  *   get:
  *     summary: Get list of consumed products
  *     description: End point for getting list of consumed products
@@ -21,11 +21,11 @@ const router = express.Router();
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       in: query
- *       name: date
- *       description: The date for which information is required
- *       required: true
- *       type: string
+ *       - in: query
+ *         name: date
+ *         description: The date for which information is required
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: OK
@@ -35,7 +35,7 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
 
 /**
  * @swagger
- * /api/diary/workout:
+ * /api/diary/workout{?date}:
  *   get:
  *     summary: Get list of completed exercise
  *     description: End point for getting list of completed exercise
@@ -44,11 +44,11 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       in: query
- *       name: date
- *       description: The date for which information is required
- *       required: true
- *       type: string
+ *       - in: query
+ *         name: date
+ *         description: The date for which information is required
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: OK
@@ -109,7 +109,7 @@ router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.p
 
 /**
  * @swagger
- * /api/diary/meal/:id:
+ * /api/diary/meal{id}:
  *   delete:
  *     summary: Delete consumed product
  *     description: Endpoint to deleting consumed product
@@ -117,6 +117,11 @@ router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.p
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         description: Product id that is being deleted
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: OK
@@ -130,7 +135,7 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
 
 /**
  * @swagger
- * /api/diary/workout/:id:
+ * /api/diary/workout{id}:
  *   delete:
  *     summary: Delete completed exercise
  *     description: Endpoint of deleting completed exercise
@@ -138,6 +143,11 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         description: Exercise id that is being deleted
+ *         required: true
+ *         type: string
  *     responses:
  *       200:
  *         description: OK
