@@ -13,12 +13,12 @@ const productSchema = new Schema({
   },
 });
 
-const categoryProductSchema = new Schema({
+const categorySchema = new Schema({
   productsCategories: Array,
 });
 
 const Product = model('product', productSchema);
-const Category = model('productsCategory', categoryProductSchema);
+const Category = model('category', categorySchema);
 
 module.exports = {
   Product,
