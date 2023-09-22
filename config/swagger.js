@@ -10,8 +10,8 @@ const swaggerOptions = {
 			},
 			consumes: ["application/json"],
 			produces: ["application/json"],
-			// servers: ["https://power-pulse.onrender.com"],
-			servers: ["https://localhost:3000"],
+			servers: ["https://power-pulse.onrender.com"],
+			// servers: ["https://localhost:3000"],
     },
     components: {
       securitySchemes: {
