@@ -14,17 +14,21 @@ const router = express.Router();
  * @swagger
  * /api/diary/meal:
  *   get:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Get list of consumed products
+ *     description: End point for getting list of consumed products
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       in: query
+ *       name: date
+ *       description: The date for which information is required
+ *       required: true
+ *       type: string
  *     responses:
  *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *         description: OK
  */
 
 router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
@@ -33,17 +37,21 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
  * @swagger
  * /api/diary/workout:
  *   get:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Get list of completed exercise
+ *     description: End point for getting list of completed exercise
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       in: query
+ *       name: date
+ *       description: The date for which information is required
+ *       required: true
+ *       type: string
  *     responses:
  *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *         description: OK
  */
 
 router.get('/workout', authenticate, ctrlDiary.getByDateWorkout);
@@ -52,17 +60,24 @@ router.get('/workout', authenticate, ctrlDiary.getByDateWorkout);
  * @swagger
  * /api/diary/meal:
  *   post:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Save consumed product
+ *     description: Endpoint of saving consumed product
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       description: Data of consumed product
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SavingConsumedProduct'
  *     responses:
- *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *       201:
+ *         description: Created
+ *       400:
+ *         description: Bad request
  */
 
 router.post('/meal', validation(postMealSchema), authenticate, ctrlDiary.postAddMeal);
@@ -71,36 +86,44 @@ router.post('/meal', validation(postMealSchema), authenticate, ctrlDiary.postAdd
  * @swagger
  * /api/diary/workout:
  *   post:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Save completed exercise
+ *     description: Endpoint of saving completed exercise
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
+ *     requestBody:
+ *       description: Data of completed exercise
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/SavingCompletedExercise'
  *     responses:
- *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *       201:
+ *         description: Created
+ *       400:
+ *         description: Bad request
  */
-
 router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.postAddWorkout);
 
 /**
  * @swagger
  * /api/diary/meal/:id:
  *   delete:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Delete consumed product
+ *     description: Endpoint to deleting consumed product
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *         description: OK
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Not Found
  */
 
 router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
@@ -109,17 +132,19 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
  * @swagger
  * /api/diary/workout/:id:
  *   delete:
- *     summary: Get user parameters
- *     description: Endpoint to get user parameters.
+ *     summary: Delete completed exercise
+ *     description: Endpoint of deleting completed exercise
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: A successful response
- *       401:
- *         description: Unauthorized
+ *         description: OK
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Not Found
  */
 
 router.delete('/workout/:id', authenticate, isValidId, ctrlDiary.deleteByIdWorkout);

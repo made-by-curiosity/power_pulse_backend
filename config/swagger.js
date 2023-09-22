@@ -116,28 +116,28 @@ const swaggerOptions = {
           properties: {
             productId: { type: "Schema.Types.ObjectId" },
             amount: { type: "integer", min: 1 },
-            calories: { type: "integer", min: 1 },
+						calories: { type: "integer", min: 1 },
           },
-          required: ["productId", "amount", "pcalories"],
+          required: ["productId", "amount", "calories"],
           example: {
             productId: "5d51694902b2373622ff5b7f",
-            amount: 100,
-            calories: 112,
+            amount: 200,
+            calories: 224,
           },
 				},
 				SavingCompletedExercise: {
-
-				},
-				DeleteOfConsumedProduct: {
-
-				},
-				DeleteOfCompletedExercise: {
-
-				},
-				ObtainingDataOnConsumedProducts: {
-
-				},
-				ObtainingDataOnCompletedExercise: {
+          type: "object",
+          properties: {
+            exerciseId: { type: "Schema.Types.ObjectId" },
+            time: { type: "integer", min: 1 },
+						calories: { type: "integer", min: 1 },
+          },
+          required: ["productId", "time", "calories"],
+          example: {
+            exerciseId: "65089cba822834622223fd91",
+            time: 6,
+            calories: 646,
+          },
 				},
       },
     },
