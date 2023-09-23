@@ -26,11 +26,16 @@ const router = express.Router();
  *     responses:
  *       201:
  *         description: User successfully registered.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RegisterResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       409:
  *         description: Email already in use.
  */
+
 
 router.post("/register", validation(schemas.registerSchema), auth.register);
 
@@ -51,7 +56,7 @@ router.post("/register", validation(schemas.registerSchema), auth.register);
  *             $ref: '#/components/schemas/LoginInput'
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Successful login
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -83,19 +88,45 @@ router.post("/logout", authenticate, auth.logOut);
  * @swagger
  * /api/auth/current:
  *   get:
- *     summary: get current user information
+ *     summary: Get current user information
  *     description: Endpoint to get current user information.
  *     tags:
- *         - Auth
+ *       - Auth
  *     security:
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Successful response
  *       401:
  *         description: Unauthorized
  */
 
 router.get("/current", authenticate, auth.getCurrent);
+
+router.post("/request", auth.getGoogleUrl);
+
+/**
+ * @swagger
+ * /api/auth/oauth:
+ *   get:
+ *     summary: Get Google auth URL
+ *     description: Endpoint to get Google auth URL.
+ *     tags:
+ *       - Auth
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 url:
+ *                   type: string
+ *             example:
+ *               url: "https://accounts.google.com/o/oauth2/auth?access_type=offline&scope=https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/userinfo.email%20openid&prompt=consent&..."
+ */
+
+router.get("/oauth", auth.googleOauth);
 
 module.exports = router;
