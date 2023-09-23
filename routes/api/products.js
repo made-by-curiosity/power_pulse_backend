@@ -30,18 +30,20 @@ router.get('/categories', authenticate, getAllProductCategories);
  * @swagger
  * /api/products/byBloodType:
  *   get:
- *     summary: Get products by blood type.
+ *     summary: Get products by blood type
+ *     description: Retrieve products based on the user's blood type and an optional recommendation filter.
  *     tags:
  *       - Products
  *     parameters:
- *       - in: query
- *         name: recommended
+ *       - name: recommended
+ *         in: query
+ *         description: Filter products based on recommendation (true or false).
+ *         required: false
  *         schema:
- *           type: boolean
- *         description: Filter products by recommendation status (true or false).
+ *           type: string
  *     responses:
  *       200:
- *         description: A list of products filtered by blood type and recommendation status.
+ *         description: A list of products that match the specified criteria.
  *         content:
  *           application/json:
  *             schema:
@@ -49,6 +51,7 @@ router.get('/categories', authenticate, getAllProductCategories);
  *               items:
  *                 $ref: '#/components/schemas/Product'
  */
+
 router.get('/byBloodType', authenticate, getProductsByBloodType);
 
 module.exports = router;
