@@ -10,8 +10,8 @@ const swaggerOptions = {
 			},
 			consumes: ["application/json"],
 			produces: ["application/json"],
-			servers: ["https://power-pulse.onrender.com"],
-			// servers: ["https://localhost:3000"],
+			// servers: ["https://power-pulse.onrender.com"],
+		servers: ["https://localhost:3030"],
     },
     components: {
       securitySchemes: {
@@ -139,6 +139,41 @@ const swaggerOptions = {
             calories: 646,
           },
 				},
+        Category: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example: {
+            _id: "65089d2582283462222402be",
+            productsCategories: [
+              "alcoholic drinks",
+              "berries",
+              "cereals",
+              "dairy",
+              "dried fruits",
+              "eggs",
+              "fish",
+              "flour",
+              "fruits",
+              "meat",
+              "mushrooms",
+              "nuts",
+              "oils and fats",
+              "poppy",
+              "sausage",
+              "seeds",
+              "sesame",
+              "soft drinks",
+              "vegetables and herbs",
+            ],
+          },
+        },
       },
     },
   },
@@ -147,6 +182,7 @@ const swaggerOptions = {
     { name: "Auth", description: "Authentication" },
 		{ name: "Users", description: "Operations related to users" },
 		{ name: "Diary", description: "Operations related to diary" },
+    { name: "Products", description: "Operations related to products" },
   ],
 };
 

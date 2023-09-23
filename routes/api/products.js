@@ -14,6 +14,8 @@ const {
  *     summary: Get all product categories.
  *     tags:
  *       - Products
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all product categories.
@@ -23,17 +25,32 @@ const {
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Category'
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not authorized
+ *       404:
+ *         description: Not found. The requested resource was not found.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not found
  */
+
 router.get('/categories', authenticate, getAllProductCategories);
 
 /**
  * @swagger
- * /api/products/byBloodType:
+ * /api/products/byBloodType{?recommended}:
  *   get:
  *     summary: Get products by blood type
  *     description: Retrieve products based on the user's blood type and an optional recommendation filter.
  *     tags:
  *       - Products
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: recommended
  *         in: query
@@ -50,6 +67,12 @@ router.get('/categories', authenticate, getAllProductCategories);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Product'
+ *       400:
+ *         description: Bad request. Invalid input parameters.
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *       404:
+ *         description: Not found. The requested resource was not found.
  */
 
 router.get('/byBloodType', authenticate, getProductsByBloodType);

@@ -16,6 +16,8 @@ const {
  *     summary: Get all exercises.
  *     tags:
  *       - Exercises
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all exercises.
@@ -25,7 +27,12 @@ const {
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Exercise'
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *       404:
+ *         description: Not found. The requested resource was not found.
  */
+
 router.get('/categories', authenticate, getAllExercises);
 
 /**
@@ -35,6 +42,8 @@ router.get('/categories', authenticate, getAllExercises);
  *     summary: Get all body parts for exercises.
  *     tags:
  *       - Exercises
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all body parts for exercises.
@@ -44,7 +53,12 @@ router.get('/categories', authenticate, getAllExercises);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Filter'
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *       404:
+ *         description: Not found. The requested resource was not found.
  */
+
 router.get('/body-parts', authenticate, getAllBodyParts);
 
 /**
@@ -54,6 +68,8 @@ router.get('/body-parts', authenticate, getAllBodyParts);
  *     summary: Get all equipment for exercises.
  *     tags:
  *       - Exercises
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all equipment for exercises.
@@ -63,7 +79,12 @@ router.get('/body-parts', authenticate, getAllBodyParts);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Filter'
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *       404:
+ *         description: Not found. The requested resource was not found.
  */
+
 router.get('/equipment', authenticate, getAllEquipment);
 
 /**
@@ -73,6 +94,8 @@ router.get('/equipment', authenticate, getAllEquipment);
  *     summary: Get all muscles for exercises.
  *     tags:
  *       - Exercises
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: A list of all muscles for exercises.
@@ -82,7 +105,12 @@ router.get('/equipment', authenticate, getAllEquipment);
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Filter'
+ *       401:
+ *         description: Unauthorized. User is not authenticated.
+ *       404:
+ *         description: Not found. The requested resource was not found.
  */
+
 router.get('/muscles', authenticate, getAllMuscles);
 
 module.exports = router;
