@@ -28,7 +28,7 @@ router.get('/categories', authenticate, getAllProductCategories);
 
 /**
  * @swagger
- * /byBloodType:
+ * /api/products/byBloodType:
  *   get:
  *     summary: Get products by blood type
  *     description: Retrieve products based on the user's blood type and an optional recommendation filter.
