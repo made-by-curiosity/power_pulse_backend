@@ -15,7 +15,7 @@ const router = express.Router();
  * /api/diary/meal{?date}:
  *   get:
  *     summary: Get list of consumed products
- *     description: End point for getting list of consumed products
+ *     description: Endpoint for getting list of consumed products
  *     tags:
  *         - Diary
  *     security:
@@ -28,7 +28,11 @@ const router = express.Router();
  *         type: string
  *     responses:
  *       200:
- *         description: OK
+ *         description: OK. ----- Array of objects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InfoAboutConsumedProducts'
  */
 
 router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
@@ -38,7 +42,7 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
  * /api/diary/workout{?date}:
  *   get:
  *     summary: Get list of completed exercise
- *     description: End point for getting list of completed exercise
+ *     description: Endpoint for getting list of completed exercise
  *     tags:
  *         - Diary
  *     security:
@@ -51,7 +55,11 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
  *         type: string
  *     responses:
  *       200:
- *         description: OK
+ *         description: OK. ----- Array of objects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InfoAboutCompletedWorkouts'
  */
 
 router.get('/workout', authenticate, ctrlDiary.getByDateWorkout);
@@ -76,8 +84,17 @@ router.get('/workout', authenticate, ctrlDiary.getByDateWorkout);
  *     responses:
  *       201:
  *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessSavingProductInDiary'
  *       400:
- *         description: Bad request
+ *         description: Bad request. 
+ *           Options body request - "{key} is not allowed", "{key} is required", "{key} must be a {type}", id error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorSavingInDiary'
  */
 
 router.post('/meal', validation(postMealSchema), authenticate, ctrlDiary.postAddMeal);
@@ -86,24 +103,33 @@ router.post('/meal', validation(postMealSchema), authenticate, ctrlDiary.postAdd
  * @swagger
  * /api/diary/workout:
  *   post:
- *     summary: Save completed exercise
- *     description: Endpoint of saving completed exercise
+ *     summary: Save completed workout
+ *     description: Endpoint of saving completed workout
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       description: Data of completed exercise
+ *       description: Data of completed workout
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/SavingCompletedExercise'
+ *             $ref: '#/components/schemas/SavingCompletedWorkout'
  *     responses:
  *       201:
  *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessSavingWorkoutInDiary'
  *       400:
- *         description: Bad request
+ *         description: Bad request. 
+ *           Options body request - "{key} is not allowed", "{key} is required", "{key} must be a {type}", id error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorSavingInDiary'
  */
 router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.postAddWorkout);
 
@@ -125,10 +151,22 @@ router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.p
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessDeletingProductFromDiary'
  *       400:
- *         description: Bad request
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error400DeletingFromDiary'
  *       404:
  *         description: Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error404DeletingFromDiary'
  */
 
 router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
@@ -137,26 +175,37 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
  * @swagger
  * /api/diary/workout/{id}:
  *   delete:
- *     summary: Delete completed exercise
- *     description: Endpoint of deleting completed exercise
+ *     summary: Delete completed workout
+ *     description: Endpoint of deleting completed workout
  *     tags:
  *         - Diary
  *     security:
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         description: Exercise id that is being deleted
+ *         description: Workout id that is being deleted
  *         required: true
  *         type: string
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SuccessDeletingWorkoutFromDiary'
  *       400:
- *         description: Bad request
+ *          description: Bad Request
+ *          content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error400DeletingFromDiary'
  *       404:
  *         description: Not Found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error404DeletingFromDiary'
  */
-
 router.delete('/workout/:id', authenticate, isValidId, ctrlDiary.deleteByIdWorkout);
 
 module.exports = router;
