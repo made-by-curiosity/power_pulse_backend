@@ -174,6 +174,102 @@ const swaggerOptions = {
             ],
           },
         },
+        ByBlodType: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example: {
+            "groupBloodNotAllowed": {
+                "1": false,
+                "2": false,
+                "3": false,
+                "4": false
+            },
+            "_id": "5d51694902b2373622ff5b7f",
+            "weight": 100,
+            "calories": 112,
+            "category": "fish",
+            "title": "marlin"
+          },
+        },
+        ExercisesCategories: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example: {
+            "_id": "65089cba822834622223fd90",
+            "bodyPart": "waist",
+            "equipment": "body weight",
+            "gifUrl": "https://res.cloudinary.com/ditdqzoio/image/upload/v1687127066/exercises/0001.gif",
+            "name": "3/4 sit-up",
+            "target": "abs",
+            "burnedCalories": 220,
+            "time": 3
+          },
+        },
+        ExercisesBodyParts: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example: {
+            "_id": "65089d5082283462222402c0",
+            "filter": "Body parts",
+            "name": "back",
+            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/back_wzzphw.jpg"
+          },
+        },
+        ExercisesEquipment: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example: {
+            "_id": "65089d5082283462222402ca",
+            "filter": "Equipment",
+            "name": "assisted",
+            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/assisted_gukduh.jpg"
+          },
+        },
+        ExercisesMuscles: {
+          type: "object",
+          properties: {
+            _id: { type: "string" },
+            productsCategories: {
+              type: "array",
+              items: { type: "string" },
+            },
+          },
+          required: ["_id", "productsCategories"],
+          example:  {
+            "_id": "65089d5082283462222402e6",
+            "filter": "Muscles",
+            "name": "abductors",
+            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694469569/categories/abductors_ymfukx.jpg"
+          },
+        },
       },
     },
   },
@@ -183,6 +279,7 @@ const swaggerOptions = {
 		{ name: "Users", description: "Operations related to users" },
 		{ name: "Diary", description: "Operations related to diary" },
     { name: "Products", description: "Operations related to products" },
+    { name: "Exercise", description: "Operations related to exercises" },
   ],
 };
 

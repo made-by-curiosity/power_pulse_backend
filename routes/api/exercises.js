@@ -14,6 +14,7 @@ const {
  * /api/exercises/categories:
  *   get:
  *     summary: Get all exercises.
+ *     description: Endpoint to get all exercise categories.
  *     tags:
  *       - Exercises
  *     security:
@@ -26,11 +27,19 @@ const {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Exercise'
+ *                 $ref: '#/components/schemas/ExercisesCategories' 
  *       401:
  *         description: Unauthorized. User is not authenticated.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not authorized
  *       404:
  *         description: Not found. The requested resource was not found.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not found
  */
 
 router.get('/categories', authenticate, getAllExercises);
@@ -40,6 +49,7 @@ router.get('/categories', authenticate, getAllExercises);
  * /api/exercises/body-parts:
  *   get:
  *     summary: Get all body parts for exercises.
+ *     description: Endpoint to get exercises for all parts of the body.
  *     tags:
  *       - Exercises
  *     security:
@@ -52,11 +62,19 @@ router.get('/categories', authenticate, getAllExercises);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Filter'
+ *                 $ref: '#/components/schemas/ExercisesBodyParts' 
  *       401:
  *         description: Unauthorized. User is not authenticated.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not authorized
  *       404:
  *         description: Not found. The requested resource was not found.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not found
  */
 
 router.get('/body-parts', authenticate, getAllBodyParts);
@@ -66,6 +84,7 @@ router.get('/body-parts', authenticate, getAllBodyParts);
  * /api/exercises/equipment:
  *   get:
  *     summary: Get all equipment for exercises.
+ *     description: Endpoint to get exercises for all equipment.
  *     tags:
  *       - Exercises
  *     security:
@@ -78,11 +97,19 @@ router.get('/body-parts', authenticate, getAllBodyParts);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Filter'
+ *                 $ref: '#/components/schemas/ExercisesEquipment' 
  *       401:
  *         description: Unauthorized. User is not authenticated.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not authorized
  *       404:
  *         description: Not found. The requested resource was not found.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not found
  */
 
 router.get('/equipment', authenticate, getAllEquipment);
@@ -92,6 +119,7 @@ router.get('/equipment', authenticate, getAllEquipment);
  * /api/exercises/muscles:
  *   get:
  *     summary: Get all muscles for exercises.
+ *     description: Endpoint to get exercises for all muscles. 
  *     tags:
  *       - Exercises
  *     security:
@@ -104,11 +132,19 @@ router.get('/equipment', authenticate, getAllEquipment);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Filter'
+ *                 $ref: '#/components/schemas/ExercisesMuscles' 
  *       401:
  *         description: Unauthorized. User is not authenticated.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not authorized
  *       404:
  *         description: Not found. The requested resource was not found.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: Not found
  */
 
 router.get('/muscles', authenticate, getAllMuscles);
