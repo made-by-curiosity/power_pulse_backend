@@ -1,13 +1,17 @@
 const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
-    info: {
+		info: {
+			version: "1.0.0",
       title: "Power Pulse API",
       description: "",
       contact: {
         name: "",
-      },
-      servers: ["https://power-pulse.onrender.com"],
+			},
+			consumes: ["application/json"],
+			produces: ["application/json"],
+			servers: ["https://power-pulse.onrender.com"],
+			// servers: ["https://localhost:3000"],
     },
     components: {
       securitySchemes: {
@@ -106,14 +110,43 @@ const swaggerOptions = {
           example: {
             name: "New Name",
           },
-        },
+				},
+				SavingConsumedProduct: {
+          type: "object",
+          properties: {
+            productId: { type: "Schema.Types.ObjectId" },
+            amount: { type: "integer", min: 1 },
+						calories: { type: "integer", min: 1 },
+          },
+          required: ["productId", "amount", "calories"],
+          example: {
+            productId: "5d51694902b2373622ff5b7f",
+            amount: 200,
+            calories: 224,
+          },
+				},
+				SavingCompletedExercise: {
+          type: "object",
+          properties: {
+            exerciseId: { type: "Schema.Types.ObjectId" },
+            time: { type: "integer", min: 1 },
+						calories: { type: "integer", min: 1 },
+          },
+          required: ["productId", "time", "calories"],
+          example: {
+            exerciseId: "65089cba822834622223fd91",
+            time: 6,
+            calories: 646,
+          },
+				},
       },
     },
   },
   apis: ["./routes/api/*.js"],
   tags: [
     { name: "Auth", description: "Authentication" },
-    { name: "Users", description: "Operations related to users" },
+		{ name: "Users", description: "Operations related to users" },
+		{ name: "Diary", description: "Operations related to diary" },
   ],
 };
 
