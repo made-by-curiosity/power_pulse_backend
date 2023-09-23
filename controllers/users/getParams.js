@@ -23,6 +23,7 @@ const getParams = async (req, res) => {
       email: user.email,
       avatarUrl: user.avatarUrl,
       userParams: user.userParams,
+      createdAt: user.createdAt,
     },
     bmr,
   });

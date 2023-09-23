@@ -38,6 +38,7 @@ const register = async (req, res) => {
       email: newUser.email,
       avatarUrl: newUser.avatarUrl,
       userParams: newUser.userParams,
+      createdAt: newUser.createdAt,
     },
   });
 };
