@@ -10,8 +10,8 @@ const swaggerOptions = {
 			},
 			consumes: ["application/json"],
 			produces: ["application/json"],
-			// servers: ["https://power-pulse.onrender.com"],
-			servers: ["https://localhost:3000"],
+			servers: ["https://power-pulse.onrender.com"],
+			// servers: ["https://localhost:3000"],
     },
     components: {
       securitySchemes: {
@@ -305,9 +305,51 @@ const swaggerOptions = {
 					},
 				},
 // Statistics
-				
-
-
+				TotalUsers: {
+					type: "object",
+          properties: {
+            totalUsers: { type: "integer" },
+          },
+          example: {
+            totalUsers: 250,
+					},
+				},
+				TotalExercises: {
+					type: "object",
+          properties: {
+            totalExercises: { type: "integer" },
+          },
+          example: {
+            totalExercises: 1325,
+					},
+				},
+				TotalWorkouts: {
+					type: "object",
+          properties: {
+            totalWorkouts: { type: "integer" },
+          },
+          example: {
+            totalWorkouts: 170,
+					},
+				},
+				TotalWorkoutsTime: {
+					type: "object",
+          properties: {
+            totalWorkoutsTime: { type: "integer" },
+          },
+          example: {
+            totalWorkoutsTime: 72,
+					},
+				},
+				TotalBurnedCalories: {
+					type: "object",
+          properties: {
+            totalBurnedCalories: { type: "integer" },
+          },
+          example: {
+            totalBurnedCalories: 24723,
+					},
+				},
       },
     },
   },
@@ -316,6 +358,7 @@ const swaggerOptions = {
     { name: "Auth", description: "Authentication" },
 		{ name: "Users", description: "Operations related to users" },
 		{ name: "Diary", description: "Operations related to diary" },
+		{ name: "Statistics", description: "Statistics" },
   ],
 };
 
