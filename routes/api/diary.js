@@ -109,7 +109,7 @@ router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.p
 
 /**
  * @swagger
- * /api/diary/meal{id}:
+ * /api/diary/meal/{id}:
  *   delete:
  *     summary: Delete consumed product
  *     description: Endpoint to deleting consumed product
@@ -135,7 +135,7 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
 
 /**
  * @swagger
- * /api/diary/workout{id}:
+ * /api/diary/workout/{id}:
  *   delete:
  *     summary: Delete completed exercise
  *     description: Endpoint of deleting completed exercise
