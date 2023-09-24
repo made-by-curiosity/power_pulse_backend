@@ -9,6 +9,7 @@ const getCurrent = async (req, res) => {
       userParams: user.userParams,
       createdAt: user.createdAt,
     },
+    token: user.token,
   });
 };
 

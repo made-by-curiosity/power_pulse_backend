@@ -14,6 +14,10 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TotalUsers'
  */
 
 router.get('/users', ctrlStatistics.getCountUsers);
@@ -29,6 +33,10 @@ router.get('/users', ctrlStatistics.getCountUsers);
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TotalExercises'
  */
 
 router.get('/exercises', ctrlStatistics.getCountExercises);
@@ -44,8 +52,11 @@ router.get('/exercises', ctrlStatistics.getCountExercises);
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TotalWorkouts'
  */
-
 router.get('/workouts', ctrlStatistics.getCountWorkouts);
 
 /**
@@ -59,6 +70,10 @@ router.get('/workouts', ctrlStatistics.getCountWorkouts);
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TotalWorkoutsTime'
  */
 
 router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
@@ -74,6 +89,10 @@ router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
  *     responses:
  *       200:
  *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TotalBurnedCalories'
  */
 
 router.get('/calories', ctrlStatistics.getTotalCaloriesWorkouts);

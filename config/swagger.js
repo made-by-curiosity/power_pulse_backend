@@ -1,287 +1,503 @@
 const swaggerOptions = {
   swaggerDefinition: {
-    openapi: "3.0.0",
-		info: {
-			version: "1.0.0",
-      title: "Power Pulse API",
-      description: "",
+    openapi: '3.0.0',
+    info: {
+      version: '1.0.0',
+      title: 'Power Pulse API',
+      description: '',
       contact: {
-        name: "",
-			},
-			consumes: ["application/json"],
-			produces: ["application/json"],
-			servers: ["https://power-pulse.onrender.com"],
-		  // servers: ["https://localhost:3030"],
+        name: '',
+      },
+      consumes: ['application/json'],
+      produces: ['application/json'],
+      servers: ['https://power-pulse.onrender.com'],
+      // servers: ["https://localhost:3030"],
     },
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
       },
       schemas: {
+        // Auth, Users
         RegisterInput: {
-          type: "object",
+          type: 'object',
           properties: {
-            name: { type: "string" },
-            email: { type: "string", format: "email" },
-            password: { type: "string" },
+            name: { type: 'string' },
+            email: { type: 'string', format: 'email' },
+            password: { type: 'string' },
           },
-          required: ["name", "email", "password"],
+          required: ['name', 'email', 'password'],
           example: {
-            name: "John Doe",
-            email: "john@example.com",
-            password: "password123",
+            name: 'John Doe',
+            email: 'john@example.com',
+            password: 'password123',
           },
         },
         RegisterResponse: {
-          type: "object",
+          type: 'object',
           properties: {
-            token: { type: "string" },
+            token: { type: 'string' },
             user: {
-              type: "object",
+              type: 'object',
               properties: {
-                name: { type: "string" },
-                email: { type: "string", format: "email" },
+                name: { type: 'string' },
+                email: { type: 'string', format: 'email' },
               },
             },
           },
           example: {
-            token: "your-auth-token",
+            token: 'your-auth-token',
             user: {
-              name: "John Doe",
-              email: "john@example.com",
+              name: 'John Doe',
+              email: 'john@example.com',
             },
           },
         },
         LoginInput: {
-          type: "object",
+          type: 'object',
           properties: {
-            email: { type: "string" },
-            password: { type: "string" },
+            email: { type: 'string' },
+            password: { type: 'string' },
           },
-          required: ["email", "password"],
+          required: ['email', 'password'],
           example: {
-            email: "john@example.com",
-            password: "password123",
+            email: 'john@example.com',
+            password: 'password123',
           },
         },
         UpdateUserParams: {
-          type: "object",
+          type: 'object',
           properties: {
-            height: { type: "number", minimum: 150 },
-            currentWeight: { type: "number", minimum: 35 },
-            desiredWeight: { type: "number", minimum: 35 },
+            height: { type: 'number', minimum: 150 },
+            currentWeight: { type: 'number', minimum: 35 },
+            desiredWeight: { type: 'number', minimum: 35 },
             birthday: {
-              type: "string",
-              format: "date",
+              type: 'string',
+              format: 'date',
             },
-            blood: { type: "number", enum: [1, 2, 3, 4] },
-            sex: { type: "string", enum: ["male", "female"] },
-            levelActivity: { type: "number", enum: [1, 2, 3, 4, 5] },
+            blood: { type: 'number', enum: [1, 2, 3, 4] },
+            sex: { type: 'string', enum: ['male', 'female'] },
+            levelActivity: { type: 'number', enum: [1, 2, 3, 4, 5] },
           },
           required: [
-            "height",
-            "currentWeight",
-            "desiredWeight",
-            "birthday",
-            "blood",
-            "sex",
-            "levelActivity",
+            'height',
+            'currentWeight',
+            'desiredWeight',
+            'birthday',
+            'blood',
+            'sex',
+            'levelActivity',
           ],
           example: {
             height: 170,
             currentWeight: 75,
             desiredWeight: 70,
-            birthday: "1990-01-01",
+            birthday: '1990-01-01',
             blood: 1,
-            sex: "male",
+            sex: 'male',
             levelActivity: 3,
           },
         },
         UpdateUsernameInput: {
-          type: "object",
+          type: 'object',
           properties: {
-            name: { type: "string" },
+            name: { type: 'string' },
           },
-          required: ["name"],
+          required: ['name'],
           example: {
-            name: "New Name",
+            name: 'New Name',
           },
-				},
-				SavingConsumedProduct: {
-          type: "object",
+        },
+        // Diary
+        InfoAboutConsumedProducts: {
+          type: 'array of objects',
           properties: {
-            productId: { type: "Schema.Types.ObjectId" },
-            amount: { type: "integer", min: 1 },
-						calories: { type: "integer", min: 1 },
+            _id: { type: 'Schema.Types.ObjectId' },
+            productId: {
+              groupBloodNotAllowed: {
+                1: { type: 'boolean' },
+                2: { type: 'boolean' },
+                3: { type: 'boolean' },
+                4: { type: 'boolean' },
+              },
+              _id: { type: 'Schema.Types.ObjectId' },
+              weight: { type: 'integer' },
+              calories: { type: 'integer' },
+              category: { type: 'string' },
+              title: { type: 'string' },
+            },
+            amount: { type: 'integer' },
+            calories: { type: 'integer' },
           },
-          required: ["productId", "amount", "calories"],
+          example: [
+            {
+              _id: '650dd80eb4c86ec486da4798',
+              productId: {
+                groupBloodNotAllowed: {
+                  1: false,
+                  2: false,
+                  3: false,
+                  4: false,
+                },
+                _id: '5d51694902b2373622ff5b7f',
+                weight: 100,
+                calories: 112,
+                category: 'fish',
+                title: 'marlin',
+              },
+              amount: 200,
+              calories: 224,
+            },
+          ],
+        },
+        InfoAboutCompletedWorkouts: {
+          type: 'array of objects',
+          properties: {
+            _id: { type: 'Schema.Types.ObjectId' },
+            exerciseId: {
+              _id: { type: 'Schema.Types.ObjectId' },
+              bodyPart: { type: 'string' },
+              equipment: { type: 'string' },
+              gifUrl: { type: 'string' },
+              name: { type: 'string' },
+              target: { type: 'string' },
+              burnedCalories: { type: 'integer' },
+              time: { type: 'integer' },
+            },
+            time: { type: 'integer' },
+            calories: { type: 'integer' },
+          },
+          example: [
+            {
+              _id: '650b1086b6449a9b91ca9df7',
+              exerciseId: {
+                _id: '65089cba822834622223fd91',
+                bodyPart: 'waist',
+                equipment: 'body weight',
+                gifUrl:
+                  'https://res.cloudinary.com/ditdqzoio/image/upload/v1687127066/exercises/0002.gif',
+                name: '45° side bend',
+                target: 'abs',
+                burnedCalories: 323,
+                time: 3,
+              },
+              time: 5,
+              calories: 650,
+            },
+          ],
+        },
+        SavingConsumedProduct: {
+          type: 'object',
+          properties: {
+            productId: { type: 'Schema.Types.ObjectId' },
+            amount: { type: 'integer', min: 1 },
+            calories: { type: 'integer', min: 1 },
+          },
+          required: ['productId', 'amount', 'calories'],
           example: {
-            productId: "5d51694902b2373622ff5b7f",
+            productId: '5d51694902b2373622ff5b7f',
             amount: 200,
             calories: 224,
           },
-				},
-				SavingCompletedExercise: {
-          type: "object",
+        },
+        SuccessSavingProductInDiary: {
+          type: 'object',
           properties: {
-            exerciseId: { type: "Schema.Types.ObjectId" },
-            time: { type: "integer", min: 1 },
-						calories: { type: "integer", min: 1 },
+            _id: { type: 'Schema.Types.ObjectId' },
+            productId: { type: 'Schema.Types.ObjectId' },
+            amount: { type: 'integer' },
+            calories: { type: 'integer' },
+            owner: { type: 'Schema.Types.ObjectId' },
+            createdAt: { type: 'string' },
+            updatedAt: { type: 'string' },
           },
-          required: ["productId", "time", "calories"],
           example: {
-            exerciseId: "65089cba822834622223fd91",
+            _id: '650f0d5d7af99d232d2fda10',
+            productId: '5d51694902b2373622ff5b7f',
+            amount: 200,
+            calories: 224,
+            owner: '650acee0e83f22598b0222c1',
+            createdAt: '2023-09-23T16:07:57.552Z',
+            updatedAt: '2023-09-23T16:07:57.552Z',
+          },
+        },
+        SavingCompletedWorkout: {
+          type: 'object',
+          properties: {
+            exerciseId: { type: 'Schema.Types.ObjectId' },
+            time: { type: 'integer', min: 1 },
+            calories: { type: 'integer', min: 1 },
+          },
+          required: ['productId', 'time', 'calories'],
+          example: {
+            exerciseId: '65089cba822834622223fd91',
             time: 6,
             calories: 646,
           },
-				},
-// ProductCategory        
+        },
+        // ProductCategory
         Category: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
+          required: ['_id', 'productsCategories'],
           example: {
-            _id: "65089d2582283462222402be",
+            _id: '65089d2582283462222402be',
             productsCategories: [
-              "alcoholic drinks",
-              "berries",
-              "cereals",
-              "dairy",
-              "dried fruits",
-              "eggs",
-              "fish",
-              "flour",
-              "fruits",
-              "meat",
-              "mushrooms",
-              "nuts",
-              "oils and fats",
-              "poppy",
-              "sausage",
-              "seeds",
-              "sesame",
-              "soft drinks",
-              "vegetables and herbs",
+              'alcoholic drinks',
+              'berries',
+              'cereals',
+              'dairy',
+              'dried fruits',
+              'eggs',
+              'fish',
+              'flour',
+              'fruits',
+              'meat',
+              'mushrooms',
+              'nuts',
+              'oils and fats',
+              'poppy',
+              'sausage',
+              'seeds',
+              'sesame',
+              'soft drinks',
+              'vegetables and herbs',
             ],
           },
         },
         ByBlodType: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
+          required: ['_id', 'productsCategories'],
           example: {
-            "groupBloodNotAllowed": {
-                "1": false,
-                "2": false,
-                "3": false,
-                "4": false
+            groupBloodNotAllowed: {
+              1: false,
+              2: false,
+              3: false,
+              4: false,
             },
-            "_id": "5d51694902b2373622ff5b7f",
-            "weight": 100,
-            "calories": 112,
-            "category": "fish",
-            "title": "marlin"
+            _id: '5d51694902b2373622ff5b7f',
+            weight: 100,
+            calories: 112,
+            category: 'fish',
+            title: 'marlin',
           },
         },
-// Exercises 
+        // Exercises
         ExercisesCategories: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
+          required: ['_id', 'productsCategories'],
           example: {
-            "_id": "65089cba822834622223fd90",
-            "bodyPart": "waist",
-            "equipment": "body weight",
-            "gifUrl": "https://res.cloudinary.com/ditdqzoio/image/upload/v1687127066/exercises/0001.gif",
-            "name": "3/4 sit-up",
-            "target": "abs",
-            "burnedCalories": 220,
-            "time": 3
+            _id: '65089cba822834622223fd90',
+            bodyPart: 'waist',
+            equipment: 'body weight',
+            gifUrl:
+              'https://res.cloudinary.com/ditdqzoio/image/upload/v1687127066/exercises/0001.gif',
+            name: '3/4 sit-up',
+            target: 'abs',
+            burnedCalories: 220,
+            time: 3,
           },
         },
         ExercisesBodyParts: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
+          required: ['_id', 'productsCategories'],
           example: {
-            "_id": "65089d5082283462222402c0",
-            "filter": "Body parts",
-            "name": "back",
-            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/back_wzzphw.jpg"
+            _id: '65089d5082283462222402c0',
+            filter: 'Body parts',
+            name: 'back',
+            imgURL: 'https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/back_wzzphw.jpg',
           },
         },
         ExercisesEquipment: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
+          required: ['_id', 'productsCategories'],
           example: {
-            "_id": "65089d5082283462222402ca",
-            "filter": "Equipment",
-            "name": "assisted",
-            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/assisted_gukduh.jpg"
+            _id: '65089d5082283462222402ca',
+            filter: 'Equipment',
+            name: 'assisted',
+            imgURL:
+              'https://res.cloudinary.com/dn4iogcf4/image/upload/v1694553685/assisted_gukduh.jpg',
           },
         },
         ExercisesMuscles: {
-          type: "object",
+          type: 'object',
           properties: {
-            _id: { type: "string" },
+            _id: { type: 'string' },
             productsCategories: {
-              type: "array",
-              items: { type: "string" },
+              type: 'array',
+              items: { type: 'string' },
             },
           },
-          required: ["_id", "productsCategories"],
-          example:  {
-            "_id": "65089d5082283462222402e6",
-            "filter": "Muscles",
-            "name": "abductors",
-            "imgURL": "https://res.cloudinary.com/dn4iogcf4/image/upload/v1694469569/categories/abductors_ymfukx.jpg"
+          required: ['_id', 'productsCategories'],
+          example: {
+            _id: '65089d5082283462222402e6',
+            filter: 'Muscles',
+            name: 'abductors',
+            imgURL:
+              'https://res.cloudinary.com/dn4iogcf4/image/upload/v1694469569/categories/abductors_ymfukx.jpg',
+          },
+        },
+        SuccessSavingWorkoutInDiary: {
+          type: 'object',
+          properties: {
+            _id: { type: 'Schema.Types.ObjectId' },
+            exerciseId: { type: 'Schema.Types.ObjectId' },
+            time: { type: 'integer' },
+            calories: { type: 'integer' },
+            owner: { type: 'Schema.Types.ObjectId' },
+            createdAt: { type: 'string' },
+            updatedAt: { type: 'string' },
+          },
+          example: {
+            _id: '650b155e633ef9c0f6487fdb',
+            exerciseId: '65089cba822834622223fd91',
+            time: 6,
+            calories: 646,
+            owner: '650acee0e83f22598b0222c1',
+            createdAt: '2023-09-23T16:07:57.552Z',
+            updatedAt: '2023-09-23T16:07:57.552Z',
+          },
+        },
+        ErrorSavingInDiary: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+          example: {
+            message: '"{any key}" is required',
+          },
+        },
+        SuccessDeletingProductFromDiary: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+          example: {
+            message: 'product deleted',
+          },
+        },
+        SuccessDeletingWorkoutFromDiary: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+          example: {
+            message: 'exercise deleted',
+          },
+        },
+        Error400DeletingFromDiary: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+          example: {
+            message: '{id} is not correct id format',
+          },
+        },
+        Error404DeletingFromDiary: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+          example: {
+            message: 'Not found',
+          },
+        },
+        // Statistics
+        TotalUsers: {
+          type: 'object',
+          properties: {
+            totalUsers: { type: 'integer' },
+          },
+          example: {
+            totalUsers: 250,
+          },
+        },
+        TotalExercises: {
+          type: 'object',
+          properties: {
+            totalExercises: { type: 'integer' },
+          },
+          example: {
+            totalExercises: 1325,
+          },
+        },
+        TotalWorkouts: {
+          type: 'object',
+          properties: {
+            totalWorkouts: { type: 'integer' },
+          },
+          example: {
+            totalWorkouts: 170,
+          },
+        },
+        TotalWorkoutsTime: {
+          type: 'object',
+          properties: {
+            totalWorkoutsTime: { type: 'integer' },
+          },
+          example: {
+            totalWorkoutsTime: 72,
+          },
+        },
+        TotalBurnedCalories: {
+          type: 'object',
+          properties: {
+            totalBurnedCalories: { type: 'integer' },
+          },
+          example: {
+            totalBurnedCalories: 24723,
           },
         },
       },
     },
   },
-  apis: ["./routes/api/*.js"],
+  apis: ['./routes/api/*.js'],
   tags: [
-    { name: "Auth", description: "Authentication" },
-		{ name: "Users", description: "Operations related to users" },
-		{ name: "Diary", description: "Operations related to diary" },
-    { name: "Products", description: "Operations related to products" },
-    { name: "Exercise", description: "Operations related to exercises" },
+    { name: 'Auth', description: 'Authentication' },
+    { name: 'Users', description: 'Operations related to users' },
+    { name: 'Diary', description: 'Operations related to diary' },
+    { name: 'Products', description: 'Operations related to products' },
+    { name: 'Exercise', description: 'Operations related to exercises' },
+    { name: 'Statistics', description: 'Statistics' },
   ],
 };
 
