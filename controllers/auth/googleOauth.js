@@ -14,6 +14,38 @@ const getUserData = async (accessToken) => {
   return res.data;
 };
 
+const googleSignUp = async (email, name, picture) => {
+  const newUser = await User.create({
+    name: name,
+    email: email,
+    avatarUrl: picture,
+  });
+
+  const payload = {
+    id: newUser._id,
+  };
+
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+  await User.findByIdAndUpdate(newUser._id, { token });
+
+  return `${process.env.FRONTEND_URL}welcome?token=${token}`;
+};
+
+const googleSignIn = async (email) => {
+  const user = await User.findOne({ email });
+  if (!user.token) {
+    const payload = {
+      id: user._id,
+    };
+
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+    await User.findByIdAndUpdate(user._id, { token });
+    return `${process.env.FRONTEND_URL}welcome?token=${token}`;
+  }
+
+  return `${process.env.FRONTEND_URL}welcome?token=${user.token}`;
+};
+
 const googleOauth = async (req, res) => {
   const { code } = req.query;
 
@@ -33,26 +65,13 @@ const googleOauth = async (req, res) => {
   const { email, name, picture } = data;
 
   const user = await User.findOne({ email });
+
   if (user) {
-    return res.redirect(
-      `${process.env.FRONTEND_URL}welcome?token=${user.token}`
-    );
+    const redirectFrontendUrl = await googleSignIn(email);
+    return res.redirect(redirectFrontendUrl);
   }
-
-  const newUser = await User.create({
-    name: name,
-    email: email,
-    avatarUrl: picture,
-  });
-
-  const payload = {
-    id: newUser._id,
-  };
-
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-  await User.findByIdAndUpdate(newUser._id, { token });
-
-  return res.redirect(`${process.env.FRONTEND_URL}welcome?token=${token}`);
+  const redirectFrontendUrl = await googleSignUp(email, name, picture);
+  return res.redirect(redirectFrontendUrl);
 };
 
 module.exports = googleOauth;
