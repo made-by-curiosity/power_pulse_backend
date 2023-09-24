@@ -11,7 +11,7 @@ const {
 
 /**
  * @swagger
- * /api/exercises/categories:
+ * /api/exercises:
  *   get:
  *     summary: Get all exercises.
  *     description: Endpoint to get all exercise categories.
@@ -42,7 +42,7 @@ const {
  *               message: Not found
  */
 
-router.get('/categories', authenticate, getAllExercises);
+router.get('/', authenticate, getAllExercises);
 
 /**
  * @swagger
