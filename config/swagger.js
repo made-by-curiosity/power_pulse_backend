@@ -139,6 +139,7 @@ const swaggerOptions = {
             calories: 646,
           },
 				},
+// ProductCategory        
         Category: {
           type: "object",
           properties: {
@@ -198,6 +199,7 @@ const swaggerOptions = {
             "title": "marlin"
           },
         },
+// Exercises 
         ExercisesCategories: {
           type: "object",
           properties: {
