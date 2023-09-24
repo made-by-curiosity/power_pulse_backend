@@ -27,12 +27,13 @@ const router = express.Router();
  *             $ref: '#/components/schemas/UpdateUserParams'
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Successful addition of user parameters
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
  *         description: Unauthorized
  */
+
 
 router.post(
   "/params",
