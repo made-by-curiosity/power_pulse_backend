@@ -56,7 +56,11 @@ router.post("/register", validation(schemas.registerSchema), auth.register);
  *             $ref: '#/components/schemas/LoginInput'
  *     responses:
  *       200:
- *         description: Successful login
+ *         description: User successfully logged in.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RegisterResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -96,7 +100,11 @@ router.post("/logout", authenticate, auth.logOut);
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successful response
+ *         description: A successfull response.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RegisterResponse'
  *       401:
  *         description: Unauthorized
  */

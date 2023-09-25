@@ -27,7 +27,11 @@ const router = express.Router();
  *             $ref: '#/components/schemas/UpdateUserParams'
  *     responses:
  *       200:
- *         description: Successful addition of user parameters
+ *         description: A successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UpdateParamsResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -62,6 +66,10 @@ router.post(
  *     responses:
  *       200:
  *         description: A successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UpdateParamsResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -88,6 +96,10 @@ router.put(
  *     responses:
  *       200:
  *         description: A successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GetParams'
  *       401:
  *         description: Unauthorized
  */
@@ -113,7 +125,11 @@ router.get("/params", authenticate, users.getParams);
  *             $ref: '#/components/schemas/UpdateUsernameInput'
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Username succesfully updated.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UpdateUsernameResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -150,7 +166,11 @@ router.patch(
  *                 format: binary  # Specify the format as binary for files
  *     responses:
  *       200:
- *         description: A successful response
+ *         description: Avatar succesfully updated.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UpdateAvatarResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
