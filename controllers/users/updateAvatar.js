@@ -13,14 +13,26 @@ const updateAvatar = async (req, res) => {
   const { email, _id } = req.user;
   const { path } = req.file;
 
-  const result = await cloudinary.uploader.upload(path, {
+  const resultMobile = await cloudinary.uploader.upload(path, {
     folder: "power_pulse_avatars",
-    public_id: _id,
+    public_id: `mobile_${_id}`,
+    transformation: [{ width: 90, height: 90, crop: "fill" }],
   });
+
+  const resultDesktop = await cloudinary.uploader.upload(path, {
+    folder: "power_pulse_avatars",
+    public_id: `desktop_${_id}`,
+    transformation: [{ width: 150, height: 150, crop: "fill" }],
+  });
+
+  const payload = {
+    mobile: resultMobile.url,
+    desktop: resultDesktop.url,
+  }
 
   const user = await User.findOneAndUpdate(
     { email },
-    { avatarUrl: result.url },
+    { avatarUrls: payload },
     { new: true }
   );
 
@@ -29,7 +41,7 @@ const updateAvatar = async (req, res) => {
   res.status(200).json({
     user: {
       name: user.name,
-      avatar: user.avatarUrl,
+      avatarUrls: user.avatarUrls,
     },
   });
 };

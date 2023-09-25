@@ -6,6 +6,18 @@ const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const passwordRegex =
   /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$/;
 
+const avatarUrlsSchema = new Schema(
+  {
+    mobile: {
+      type: String,
+    },
+    desktop: {
+      type: String,
+    },
+  },
+  { versionKey: false, _id: false }
+);
+
 const userParamsSchema = new Schema(
   {
     height: {
@@ -66,10 +78,7 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
-    avatarUrl: {
-      type: String,
-      default: "",
-    },
+    avatarUrls: { type: avatarUrlsSchema, default: {} },
     userParams: { type: userParamsSchema, default: {} },
   },
   { versionKey: false, minimize: false, timestamps: true }
