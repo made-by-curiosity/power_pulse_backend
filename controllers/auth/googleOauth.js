@@ -30,11 +30,11 @@ const googleOauth = async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (user) {
-    const redirectFrontendUrl = await googleSignIn(email);
+  if (!user) {
+    const redirectFrontendUrl = await googleSignUp(email, name, picture);
     return res.redirect(redirectFrontendUrl);
   }
-  const redirectFrontendUrl = await googleSignUp(email, name, picture);
+  const redirectFrontendUrl = await googleSignIn(email);
   return res.redirect(redirectFrontendUrl);
 };
 
