@@ -12,16 +12,14 @@ const usersRouter = require('./routes/api/users');
 const authRouter = require('./routes/api/auth');
 const diaryRouter = require('./routes/api/diary');
 const statisticsRouter = require('./routes/api/statistics');
+const productRoutes = require('./routes/api/products');
+const exercisesRoutes = require('./routes/api/exercises');
 
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
-
-const productRoutes = require('./routes/api/products');
-
-const exercisesRoutes = require('./routes/api/exercises');
 
 app.use(logger(formatsLogger));
 app.use(cors());
@@ -30,6 +28,7 @@ app.use(express.static('public'));
 app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/auth', authRouter);
+
 app.use('/api/users', usersRouter);
 
 app.use('/api/diary', diaryRouter);
