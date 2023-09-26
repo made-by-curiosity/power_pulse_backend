@@ -36,7 +36,7 @@ const register = async (req, res) => {
     user: {
       name: newUser.name,
       email: newUser.email,
-      avatarUrl: newUser.avatarUrl,
+      avatarUrls: newUser.avatarUrls,
       userParams: newUser.userParams,
       createdAt: newUser.createdAt,
     },

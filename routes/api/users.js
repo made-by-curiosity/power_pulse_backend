@@ -180,8 +180,8 @@ router.patch(
 router.patch(
   "/avatars",
   authenticate,
-  validateFormData,
   upload.single("avatar"),
+  validateFormData,
   users.updateAvatar
 );
 

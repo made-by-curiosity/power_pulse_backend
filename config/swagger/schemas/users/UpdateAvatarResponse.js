@@ -12,8 +12,12 @@ const UpdateAvatarResponse = {
   example: {
     user: {
       name: "John Doe",
-      avatarUrl:
-        "http://res.cloudinary.com/de24hlzdl/image/upload/v1695158738/power_pulse_avatars/6509fca7fc3390e9427dd48e.png",
+      avatarUrls: {
+        mobile:
+          "http://res.cloudinary.com/de24hlzdl/image/upload/v1695739152/power_pulse_avatars/mobile_6512ed1cc052bdcd287029f4.png",
+        desktop:
+          "http://res.cloudinary.com/de24hlzdl/image/upload/v1695739153/power_pulse_avatars/desktop_6512ed1cc052bdcd287029f4.png",
+      },
     },
   },
 };

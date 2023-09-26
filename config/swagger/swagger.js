@@ -35,6 +35,7 @@ const swaggerOptions = {
         RegisterInput: auth.RegisterInput,
         RegisterResponse: auth.RegisterResponse,
         LoginInput: auth.LoginInput,
+        LoginResponse: auth.LoginResponse,
         // Users
         UpdateUserParams: users.UpdateUserParams,
         UpdateParamsResponse: users.UpdateParamsResponse,
