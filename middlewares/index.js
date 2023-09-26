@@ -3,6 +3,7 @@ const tryCatchWrapper = require('./tryCatchWrapper');
 const isValidId = require('./isValidId');
 const authenticate = require('./authenticate');
 const upload = require('./upload');
+const validateFormData = require("./validateFormData");
 
 module.exports = {
   validation,
@@ -10,4 +11,5 @@ module.exports = {
   isValidId,
   authenticate,
   upload,
+  validateFormData,
 };

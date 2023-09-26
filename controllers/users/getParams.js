@@ -21,7 +21,7 @@ const getParams = async (req, res) => {
     user: {
       name: user.name,
       email: user.email,
-      avatarUrl: user.avatarUrl,
+      avatarUrls: user.avatarUrls,
       userParams: user.userParams,
       createdAt: user.createdAt,
     },

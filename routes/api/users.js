@@ -2,7 +2,7 @@ const express = require("express");
 
 const { users } = require("../../controllers");
 
-const { validation, authenticate, upload } = require("../../middlewares");
+const { validation, authenticate, upload, validateFormData } = require("../../middlewares");
 
 const { schemas } = require("../../models/users");
 
@@ -181,6 +181,7 @@ router.patch(
   "/avatars",
   authenticate,
   upload.single("avatar"),
+  validateFormData,
   users.updateAvatar
 );
 

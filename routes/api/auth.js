@@ -60,7 +60,7 @@ router.post("/register", validation(schemas.registerSchema), auth.register);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/RegisterResponse'
+ *               $ref: '#/components/schemas/LoginResponse'
  *       400:
  *         description: Bad request, invalid input data.
  *       401:
@@ -104,7 +104,7 @@ router.post("/logout", authenticate, auth.logOut);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/RegisterResponse'
+ *               $ref: '#/components/schemas/LoginResponse'
  *       401:
  *         description: Unauthorized
  */

@@ -1,50 +1,14 @@
 const { OAuth2Client } = require("google-auth-library");
-const axios = require("axios");
-const jwt = require("jsonwebtoken");
 
-const { SECRET_KEY } = process.env;
+const {
+  googleSignIn,
+  googleSignUp,
+  getUserData,
+} = require("../../helpers/googleAuthHelpers");
 
 const { users } = require("../../models");
+
 const { User } = users;
-
-const getUserData = async (accessToken) => {
-  const res = await axios.get(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`
-  );
-  return res.data;
-};
-
-const googleSignUp = async (email, name, picture) => {
-  const newUser = await User.create({
-    name: name,
-    email: email,
-    avatarUrl: picture,
-  });
-
-  const payload = {
-    id: newUser._id,
-  };
-
-  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-  await User.findByIdAndUpdate(newUser._id, { token });
-
-  return `${process.env.FRONTEND_URL}welcome?token=${token}`;
-};
-
-const googleSignIn = async (email) => {
-  const user = await User.findOne({ email });
-  if (!user.token) {
-    const payload = {
-      id: user._id,
-    };
-
-    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
-    await User.findByIdAndUpdate(user._id, { token });
-    return `${process.env.FRONTEND_URL}welcome?token=${token}`;
-  }
-
-  return `${process.env.FRONTEND_URL}welcome?token=${user.token}`;
-};
 
 const googleOauth = async (req, res) => {
   const { code } = req.query;
