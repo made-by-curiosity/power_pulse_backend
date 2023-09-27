@@ -1,10 +1,10 @@
 const axios = require("axios");
 
-const getUserData = async (accessToken) => {
-    const res = await axios.get(
-      `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${accessToken}`
-    );
-    return res.data;
-  };
+const GOOGLE_REQ_URL = "https://www.googleapis.com/oauth2/v3/userinfo";
 
-  module.exports = getUserData;
+const getUserData = async (accessToken) => {
+  const res = await axios.get(`${GOOGLE_REQ_URL}?access_token=${accessToken}`);
+  return res.data;
+};
+
+module.exports = getUserData;
