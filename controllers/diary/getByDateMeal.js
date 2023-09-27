@@ -1,7 +1,7 @@
 const { endOfDay, startOfDay } = require('date-fns');
 const { diary } = require('../../models');
 
-const { meal } = diary;
+const { Meal } = diary.meal;
 
 const getByDateMeal = async (req, res) => {
   const { _id: owner } = req.user;
@@ -9,7 +9,7 @@ const getByDateMeal = async (req, res) => {
   const today = new Date();
   const { date = today } = req.query;
 
-  const listMeal = await meal.Meal.find(
+  const listMeal = await Meal.find(
     {
       owner,
       createdAt: {

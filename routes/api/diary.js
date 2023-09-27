@@ -21,11 +21,13 @@ const router = express.Router();
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: query
- *         name: date
+ *       - name: date
+ *         in: query
  *         description: The date for which information is required
  *         required: true
- *         type: string
+ *         schema:
+ *           type: string
+ *           format: yyyy-mm-dd
  *     responses:
  *       200:
  *         description: OK. ----- Array of objects
@@ -48,11 +50,13 @@ router.get('/meal', authenticate, ctrlDiary.getByDateMeal);
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: query
- *         name: date
+ *       - name: date
+ *         in: query
  *         description: The date for which information is required
  *         required: true
- *         type: string
+ *         schema:
+ *           type: string
+ *           format: yyyy-mm-dd
  *     responses:
  *       200:
  *         description: OK. ----- Array of objects
@@ -144,10 +148,12 @@ router.post('/workout', validation(postWorkoutSchema), authenticate, ctrlDiary.p
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
+ *       - name: id
+ *         in: path
  *         description: Product id that is being deleted
  *         required: true
- *         type: string
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: OK
@@ -182,10 +188,12 @@ router.delete('/meal/:id', authenticate, isValidId, ctrlDiary.deleteByIdMeal);
  *     security:
  *       - bearerAuth: []
  *     parameters:
- *       - in: path
+ *       - name: id
+ *         in: path
  *         description: Workout id that is being deleted
  *         required: true
- *         type: string
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: OK
