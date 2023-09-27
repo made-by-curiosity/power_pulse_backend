@@ -9,7 +9,7 @@ const RegisterInput = {
   example: {
     name: "John Doe",
     email: "john@example.com",
-    password: "password123",
+    password: "Password123",
   },
 };
 
