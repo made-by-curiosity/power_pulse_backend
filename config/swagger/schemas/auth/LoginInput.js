@@ -7,7 +7,7 @@ const LoginInput = {
     required: ['email', 'password'],
     example: {
       email: 'john@example.com',
-      password: 'password123',
+      password: 'Password123',
     },
   }
 
