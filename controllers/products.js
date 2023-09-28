@@ -9,6 +9,8 @@ const getAllProductCategories = async (req, res) => {
 const getProductsByBloodType = async (req, res) => {
   const { blood } = req.user.userParams;
   const recommended = req.query.recommended;
+  const page = parseInt(req.query.page) || 1;
+  const perPage = parseInt(req.query.perPage) || 20;
 
   const query = {};
 
@@ -22,9 +24,19 @@ const getProductsByBloodType = async (req, res) => {
     }
   }
 
-  const filteredProductsByBloodType = await Product.find(query);
+  const totalProductsCount = await Product.countDocuments(query);
+  const totalPage = Math.ceil(totalProductsCount / perPage);
 
-  res.json(filteredProductsByBloodType);
+  const filteredProductsByBloodType = await Product.find(query)
+  .skip((page - 1) * perPage)
+  .limit(perPage);
+
+  res.json({
+    totalProductsCount,
+    totalPage,
+    currentPahe: page,
+    products: filteredProductsByBloodType,
+  });
 };
 
 module.exports = {
