@@ -6,19 +6,14 @@
 
 ## Технології
 
-Проєкт створений на платформі [Node.js](https://nodejs.org/en/docs/)
+Проєкт створений на платформі [Node.js](https://nodejs.org/en/docs/) з використанням фреймворку [Express](https://devdocs.io/express/)
 
-з використанням фреймворку [Express](https://devdocs.io/express/)
-
-Зв'язок з базою даних забезпечує бібліотека [mongoose](https://mongoosejs.com/docs/documents.html)
-
-через систему керування базами даних [MongoDB](https://www.mongodb.com/docs/)
+Зв'язок з базою даних забезпечує бібліотека [mongoose](https://mongoosejs.com/docs/documents.html) через систему керування базами даних [MongoDB](https://www.mongodb.com/docs/)
 
 ## Опис API
 
 Детально робота з ендпоінтами описана в документації [Power Pulse API](https://power-pulse.onrender.com/api/api-docs/#/).
-
-Документація проєкту створена за допомогою пакета [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
+Документація створена за допомогою пакета [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
 
 ### auth
 
@@ -79,61 +74,28 @@
 
 ## Команда розробників
 
-Вадим Агієнко (Vadym Agienko), Team lead [linkedin](https://www.linkedin.com/in/vadym-agienko), [github](https://github.com/made-by-curiosity)
+Вадим Агієнко (Vadym Agienko), Team lead. [linkedin](https://www.linkedin.com/in/vadym-agienko) || [github](https://github.com/made-by-curiosity)
 
-Віктор Бірук (Viktor Biruk), Scrum master [linkedin](https://www.linkedin.com/in/viktor-biruk), [github](https://github.com/vikttur)
+Віктор Бірук (Viktor Biruk), Scrum master. [linkedin](https://www.linkedin.com/in/viktor-biruk) || [github](https://github.com/vikttur)
 
-Ігор Кулінський (Ihor Kulinskyi)
-Developer
-https://www.linkedin.com/in/ihor-kulinskyi
-https://github.com/IhorKulinskyi
+Ігор Кулінський (Ihor Kulinskyi), Developer. [linkedin](https://www.linkedin.com/in/ihor-kulinskyi) || [github](https://github.com/IhorKulinskyi)
 
-Уляна Гринишин (Uliana Hrynyshyn)
-Developer
-https://www.linkedin.com/in/ulianahrynyshyn
-https://github.com/Uliana2022ua
+Уляна Гринишин (Uliana Hrynyshyn), Developer. [linkedin](https://www.linkedin.com/in/ulianahrynyshyn) || [github](https://github.com/Uliana2022ua)
 
-Олег Власюк (Oleg Vlasiuk)
-Developer
-https://www.linkedin.com/in/oleg-vlasiuk-1480a6265
-https://github.com/VlasiukOleg
+Олег Власюк (Oleg Vlasiuk), Developer. [linkedin](https://www.linkedin.com/in/oleg-vlasiuk-1480a6265) || [github](https://github.com/VlasiukOleg)
 
-Артем Шаповал (Artem Shapoval)
-Developer
-https://www.linkedin.com/in/artem-shapoval
-https://github.com/TyomaShapoval
+Артем Шаповал (Artem Shapoval), Developer. [linkedin](https://www.linkedin.com/in/artem-shapoval) || [github](https://github.com/TyomaShapoval)
 
-Віталій Дунюшкін (Vitaliy Dunyushkin)
-Developer
-https://github.com/VitaliyDunyushkin
-https://www.linkedin.com/in/vitaliy-dunyushkin
+Віталій Дунюшкін (Vitaliy Dunyushkin), Developer. [linkedin](https://www.linkedin.com/in/vitaliy-dunyushkin) || [github](https://github.com/VitaliyDunyushkin)
 
-Каріна Ткаченко (Karina Tkachenko)
-Developer
-https://www.linkedin.com/in/karina--tkachenko
-https://github.com/Karina-98
+Каріна Ткаченко (Karina Tkachenko), Developer. [linkedin](https://www.linkedin.com/in/karina--tkachenko) || [github](https://github.com/Karina-98)
 
-Кирило Литовченко (Kirill Litovchenko)
-Developer
-https://www.linkedin.com/in/kirill-litovchenko
-https://github.com/Oknehcvotil
+Кирило Литовченко (Kirill Litovchenko), Developer. [linkedin](https://www.linkedin.com/in/kirill-litovchenko) || [github](https://github.com/Oknehcvotil)
 
-Микита Слабушевський (Nikita Slabushevskiy)
-Developer
-https://www.linkedin.com/in/nikita-slabushevskiy
-https://github.com/ArbalestARX7
+Микита Слабушевський (Nikita Slabushevskiy), Developer. [linkedin](https://www.linkedin.com/in/nikita-slabushevskiy) || [github](https://github.com/ArbalestARX7)
 
-Михайло Гривінський (Mykhailo Hryvinskyi)
-Developer
-https://www.linkedin.com/in/mykhailo-hryvinskyi
-https://github.com/MishaHryvinskyi
+Михайло Гривінський (Mykhailo Hryvinskyi), Developer. [linkedin](https://www.linkedin.com/in/mykhailo-hryvinskyi) || [github](https://github.com/MishaHryvinskyi)
 
-Юрій Глушко (Yurii Hlushko)
-Developer
-https://www.linkedin.com/in/yurii-hlushko
-https://github.com/xtxthby
+Юрій Глушко (Yurii Hlushko), Developer. [linkedin](https://www.linkedin.com/in/yurii-hlushko) || [github](https://github.com/xtxthby)
 
-Павло Пономаренко (Paul Ponomarenko)
-Developer
-https://www.linkedin.com/in/paul-ponomarenko
-https://github.com/PaulPonomarenko
+Павло Пономаренко (Paul Ponomarenko), Developer. [linkedin](https://www.linkedin.com/in/paul-ponomarenko) || [github](https://github.com/PaulPonomarenko)
