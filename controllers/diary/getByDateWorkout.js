@@ -1,7 +1,7 @@
 const { endOfDay, startOfDay } = require('date-fns');
 const { diary } = require('../../models');
 
-const { workout } = diary;
+const { Workout } = diary.workout;
 
 const getByDateWorkout = async (req, res) => {
   const { _id: owner } = req.user;
@@ -9,7 +9,7 @@ const getByDateWorkout = async (req, res) => {
   const today = new Date();
   const { date = today } = req.query;
 
-  const listWorkout = await workout.Workout.find(
+  const listWorkout = await Workout.find(
     {
       owner,
       createdAt: {

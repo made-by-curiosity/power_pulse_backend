@@ -1,10 +1,10 @@
 const { diary } = require('../../models');
 
-const { meal } = diary;
+const { Meal } = diary.meal;
 
 const postAddMeal = async (req, res) => {
   const { _id: owner } = req.user;
-  const addMeal = await meal.Meal.create({ ...req.body, owner });
+  const addMeal = await Meal.create({ ...req.body, owner });
   res.status(201).json(addMeal);
 };
 

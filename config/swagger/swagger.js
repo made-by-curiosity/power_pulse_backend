@@ -20,7 +20,6 @@ const swaggerOptions = {
       consumes: ["application/json"],
       produces: ["application/json"],
       servers: ["https://power-pulse.onrender.com"],
-      // servers: ["https://localhost:3030"],
     },
     components: {
       securitySchemes: {
@@ -31,28 +30,28 @@ const swaggerOptions = {
         },
       },
       schemas: {
-        // Auth
+
         RegisterInput: auth.RegisterInput,
         RegisterResponse: auth.RegisterResponse,
         LoginInput: auth.LoginInput,
         LoginResponse: auth.LoginResponse,
-        // Users
+
         UpdateUserParams: users.UpdateUserParams,
         UpdateParamsResponse: users.UpdateParamsResponse,
         UpdateAvatarResponse: users.UpdateAvatarResponse,
         UpdateUsernameInput: users.UpdateUsernameInput,
         UpdateUsernameResponse: users.UpdateUsernameResponse,
         GetParams: users.GetParams,
-        // Diary
+
         InfoAboutConsumedProducts: diary.InfoAboutConsumedProducts,
         InfoAboutCompletedWorkouts: diary.InfoAboutCompletedWorkouts,
         SavingConsumedProduct: diary.SavingConsumedProduct,
         SuccessSavingProductInDiary: diary.SuccessSavingProductInDiary,
         SavingCompletedWorkout: diary.SavingCompletedWorkout,
-        // ProductCategory
+
         Category: productCategory.Category,
         ByBlodType: productCategory.ByBlodType,
-        // Exercises
+
         ExercisesCategories: exercises.ExercisesCategories,
         ExercisesBodyParts: exercises.ExercisesBodyParts,
         ExercisesEquipment: exercises.ExercisesEquipment,
@@ -65,7 +64,7 @@ const swaggerOptions = {
           exercises.SuccessDeletingWorkoutFromDiary,
         Error400DeletingFromDiary: exercises.Error400DeletingFromDiary,
         Error404DeletingFromDiary: exercises.Error404DeletingFromDiary,
-        // Statistics
+
         TotalUsers: statistics.TotalUsers,
         TotalExercises: statistics.TotalExercises,
         TotalWorkouts: statistics.TotalWorkouts,

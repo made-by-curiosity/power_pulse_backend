@@ -1,10 +1,10 @@
 const { diary } = require('../../models');
 
-const { workout } = diary;
+const { Workout } = diary.workout;
 
 const postAddWorkout = async (req, res) => {
   const { _id: owner } = req.user;
-  const addWorkout = await workout.Workout.create({ ...req.body, owner });
+  const addWorkout = await Workout.create({ ...req.body, owner });
   res.status(201).json(addWorkout);
 };
 
