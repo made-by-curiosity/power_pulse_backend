@@ -7,14 +7,18 @@
 ## Технології
 
 Проєкт створений на платформі [Node.js](https://nodejs.org/en/docs/)
+
 з використанням фреймворку [Express](https://devdocs.io/express/)
+
 Зв'язок з базою даних забезпечує бібліотека [mongoose](https://mongoosejs.com/docs/documents.html)
+
 через систему керування базами даних [MongoDB](https://www.mongodb.com/docs/)
 
 ## Опис API
 
-Детально робота з ендпоінтами описана в документації [Power Pulse API](https://power-pulse.onrender.com/api/api-docs/#/)?
-Документація створена за допомогою пакета [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
+Детально робота з ендпоінтами описана в документації [Power Pulse API](https://power-pulse.onrender.com/api/api-docs/#/).
+
+Документація проєкту створена за допомогою пакета [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
 
 ### auth
 
@@ -75,15 +79,9 @@
 
 ## Команда розробників
 
-Вадим Агієнко (Vadym Agienko)
-Team lead
-https://www.linkedin.com/in/vadym-agienko
-https://github.com/made-by-curiosity
+Вадим Агієнко (Vadym Agienko), Team lead [linkedin](https://www.linkedin.com/in/vadym-agienko), [github](https://github.com/made-by-curiosity)
 
-Віктор Бірук (Viktor Biruk)
-Scrum master
-https://www.linkedin.com/in/viktor-biruk
-https://github.com/vikttur
+Віктор Бірук (Viktor Biruk), Scrum master [linkedin](https://www.linkedin.com/in/viktor-biruk), [github](https://github.com/vikttur)
 
 Ігор Кулінський (Ihor Kulinskyi)
 Developer
