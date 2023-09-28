@@ -25,7 +25,7 @@ const {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/ProductsCategory'
+ *                 $ref: '#/components/schemas/Category'
  *       401:
  *         description: Unauthorized. User is not authenticated.
  *         content:

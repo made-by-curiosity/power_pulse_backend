@@ -8,15 +8,16 @@ const getAllProductCategories = async (req, res) => {
 
 const getProductsByBloodType = async (req, res) => {
   const { blood } = req.user.userParams;
-  const { recommended } = req.query;
+  const recommended = req.query.recommended;
 
   const query = {};
 
-  if (recommended) {
-    if (recommended === 'true') {
+  if (recommended !== undefined) {
+    const isRecommended = JSON.parse(recommended);
+
+    if (isRecommended) {
       query[`groupBloodNotAllowed.${blood}`] = false;
-    }
-    if (recommended === 'false') {
+    } else {
       query[`groupBloodNotAllowed.${blood}`] = true;
     }
   }
