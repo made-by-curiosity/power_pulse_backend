@@ -20,7 +20,7 @@ const router = express.Router();
  *               $ref: '#/components/schemas/TotalUsers'
  */
 
-router.get('/users', ctrlStatistics.getCountUsers);
+// router.get('/users', ctrlStatistics.getCountUsers);
 
 /**
  * @swagger
@@ -39,7 +39,7 @@ router.get('/users', ctrlStatistics.getCountUsers);
  *               $ref: '#/components/schemas/TotalExercises'
  */
 
-router.get('/exercises', ctrlStatistics.getCountExercises);
+// router.get('/exercises', ctrlStatistics.getCountExercises);
 
 /**
  * @swagger
@@ -57,7 +57,7 @@ router.get('/exercises', ctrlStatistics.getCountExercises);
  *             schema:
  *               $ref: '#/components/schemas/TotalWorkouts'
  */
-router.get('/workouts', ctrlStatistics.getCountWorkouts);
+// router.get('/workouts', ctrlStatistics.getCountWorkouts);
 
 /**
  * @swagger
@@ -76,7 +76,7 @@ router.get('/workouts', ctrlStatistics.getCountWorkouts);
  *               $ref: '#/components/schemas/TotalWorkoutsTime'
  */
 
-router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
+// router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
 
 /**
  * @swagger
@@ -95,6 +95,11 @@ router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
  *               $ref: '#/components/schemas/TotalBurnedCalories'
  */
 
-router.get('/calories', ctrlStatistics.getTotalCaloriesWorkouts);
+// router.get('/calories', ctrlStatistics.getTotalCaloriesWorkouts);
+
+router.get('/plus-calories', ctrlStatistics.getCountExercisesAndCalories);
+router.get('/plus-time', ctrlStatistics.getCountExercisesAndTime);
+router.get('/plus-users', ctrlStatistics.getCountExercisesAndUsers);
+router.get('/plus-workouts', ctrlStatistics.getCountExercisesAndWorkouts);
 
 module.exports = router
