@@ -10,6 +10,8 @@ const {
 
 const router = express.Router();
 
+router.get('/data', authenticate, ctrlDiary.getByDateDiary);
+
 /**
  * @swagger
  * /api/diary/meal{?date}:
