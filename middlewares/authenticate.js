@@ -28,6 +28,7 @@ const authenticate = async (req, res, next) => {
       error.message.toLowerCase() === "jwt expired".toLowerCase()
     ) {
       error.status = 401;
+      console.log(error.message);
     }
     next(error);
   }
