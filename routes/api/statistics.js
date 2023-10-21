@@ -97,4 +97,9 @@ router.get('/time', ctrlStatistics.getTotalTimeWorkouts);
 
 router.get('/calories', ctrlStatistics.getTotalCaloriesWorkouts);
 
+router.get('/plus-calories', ctrlStatistics.getCountExercisesAndCalories);
+router.get('/plus-time', ctrlStatistics.getCountExercisesAndTime);
+router.get('/plus-users', ctrlStatistics.getCountExercisesAndUsers);
+router.get('/plus-workouts', ctrlStatistics.getCountExercisesAndWorkouts);
+
 module.exports = router

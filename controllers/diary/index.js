@@ -1,3 +1,5 @@
+const getByDateDiary = require("./getByDateDiary");
+
 const getByDateMeal = require("./getByDateMeal");
 const getByDateWorkout = require("./getByDateWorkout");
 const postAddMeal = require("./postAddMeal");
@@ -8,6 +10,8 @@ const deleteByIdWorkout = require("./deleteByIdWorkout");
 const { tryCatchWrapper } = require('../../middlewares')
 
 module.exports = {
+	getByDateDiary: tryCatchWrapper(getByDateDiary),
+
 	getByDateMeal: tryCatchWrapper(getByDateMeal),
 	getByDateWorkout: tryCatchWrapper(getByDateWorkout),
 	postAddMeal: tryCatchWrapper(postAddMeal),
